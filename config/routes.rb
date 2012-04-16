@@ -25,6 +25,8 @@ MettleMvp::Application.routes.draw do
   #     end
   #   end
 
+  resource :customer, :only => :create
+
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
@@ -48,7 +50,7 @@ MettleMvp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'homepage#index'
 
   # See how all your routes lay out with "rake routes"
 
