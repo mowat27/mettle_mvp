@@ -1,7 +1,12 @@
 class CustomersController < ApplicationController
-  # POST
+
   def create
-    customer = Customer.new params[:customer]
-    redirect_to :root if customer.save
+    if Customer.new( params[:customer] ).save  
+      flash[:notice] = "Thank you for signing up."  
+    else
+      flash[:alert] = "There was a problem with your email address."
+    end
+    redirect_to :root 
   end
+
 end

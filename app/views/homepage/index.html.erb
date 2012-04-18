@@ -1,7 +1,20 @@
+<div id="intro">
+  Welcome to Mettle
+</div>
 <div id='signup_form'>
+  <header>Sign Up:</header>
   <p>Want to know more?  Sign up for our newsletter: </p>
-  <%= simple_form_for customer do |f| %>
+  <%= simple_form_for @customer do |f| %>
     <%= f.input :email_address %>
     <%= f.button :submit, "Sign Up" %>
+  <% end %>
+</div>
+
+<div id='feedback_form'>
+  <header>Feedback:</header>
+  <p>Did you find this useful? Send us your feedback: </p>
+  <%= simple_form_for @feedback do |f| %>
+    <%= f.input :description %>
+    <%= f.button :submit, "Send Feedback" %>
   <% end %>
 </div>
