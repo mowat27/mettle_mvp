@@ -1,6 +1,24 @@
 <div id="intro">
-  Welcome to Mettle
+  <h2>Welcome to Mettle</h2>
 </div>
+
+<div id="data_set_test">
+  <h2>Compare CSV Files</h2>
+  <div id="expected_results">
+    <p>Load expected results</p>
+    <input type="file" id="expected_csv_input" name="expected_csv_input" accept="text/csv"/>
+    <div id="expected_results_data"></div>
+  </div>
+  <div id="actual_results">
+    <p>Load actual results</p>
+    <input type="file" id="actual_csv_input" name="actual_csv_input" accept="text/csv"/>
+    <div id="actual_results_data"></div>
+  </div>
+  <input id='compare-button' type='submit' value="Compare Files"></button>
+
+  <div id="results_table_test"></div>
+</div>
+
 <div id='signup_form'>
   <header>Sign Up:</header>
   <p>Want to know more?  Sign up for our newsletter: </p>

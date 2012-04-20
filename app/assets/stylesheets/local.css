@@ -1,0 +1,9 @@
+.thumb {
+  height: 75px;
+  border: 1px solid #000;
+  margin: 10px 5px 0 0;
+}
+
+#data_set_test {
+  border: 1px solid black;
+}

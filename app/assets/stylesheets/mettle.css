@@ -1,0 +1,51 @@
+* {
+  padding: 5px; }
+
+body {
+  background: gray; }
+
+h2 {
+  margin: 0;
+  padding: 0;
+  text-decoration: underline; }
+
+.passed {
+  color: #25ff2a; }
+
+.failed {
+  color: #ff1400; }
+
+#failed-columns-only {
+  color: white; }
+
+#summary {
+  background: black;
+  color: white; }
+  #summary a.total {
+    color: white; }
+
+#results table {
+  background: black; }
+#results th {
+  color: white;
+  text-align: left; }
+#results td.failed {
+  border: 1px solid red; }
+
+
+.failed-columns-only {
+  color: white; }
+
+.summary {
+  background: black;
+  color: white; }
+  .summary a.total {
+    color: white; }
+
+.results table {
+  background: black; }
+.results th {
+  color: white;
+  text-align: left; }
+.results td.failed {
+  border: 1px solid red; }
