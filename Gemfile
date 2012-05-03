@@ -27,6 +27,11 @@ group :development, :test do
   gem 'turn', :require => false
   gem 'rspec', '~> 2.9.0'
   gem 'rspec-rails', '~> 2.9.0'
+
+  gem 'growl'
+  gem 'guard'
+  gem 'guard-coffeescript'
+  gem 'jasmine'
 end
 
 # To use ActiveModel has_secure_password

@@ -5,3 +5,5 @@ log/*.log
 tmp/
 .sass-cache/
 *.js.js
+public/javascripts/compiled
+spec/javascripts/compiled
