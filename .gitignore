@@ -7,3 +7,4 @@ tmp/
 *.js.js
 public/javascripts/compiled
 spec/javascripts/compiled
+spec/javascripts/helpers/SpecHelper.js
