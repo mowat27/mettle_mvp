@@ -1,11 +1,12 @@
 source_dir = "../../app/assets/javascripts"
 
-Diff = require("#{source_dir}/diff.js")
+root = global ? window
+Diff = root
 Row = Diff.Row
 DataSet = Diff.DataSet
 Index = Diff.Index
 
-_ = require("#{source_dir}/underscore.js")._
+_ = root._
 
 describe "Diff", ->
   beforeEach ->

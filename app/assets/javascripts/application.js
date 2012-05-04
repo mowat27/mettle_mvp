@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jshashtable-2.1_src
+//= require underscore
 //= require_tree .

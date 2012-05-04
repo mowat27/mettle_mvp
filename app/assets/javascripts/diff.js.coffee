@@ -1,14 +1,7 @@
 root = global ? window
-
-if require?
-  require('./jshashtable-2.1_src.js')
-  _ = require('./underscore.js')._
-else
-  _ = root._
-
 Hashtable = root.Hashtable
 
-intersection = (lhs_index, rhs_index, callbacks) ->
+root.intersection = (lhs_index, rhs_index, callbacks) ->
   return if !callbacks?
 
   my_callbacks = _.extend {
@@ -33,7 +26,7 @@ intersection = (lhs_index, rhs_index, callbacks) ->
     else
       my_callbacks.on_match(key_value, lhs_rows, rhs_rows)
 
-cartesian = (lhs,rhs) ->
+root.cartesian = (lhs,rhs) ->
   result = []
   lhs.each (lhs_row) ->
     rhs.each (rhs_row) ->
@@ -263,6 +256,7 @@ class root.Index
     result.append(pre("Key: [#{@key}]"))
     result.append(pre("Column Names: [#{@column_names}]"))
     result.append(pre("Lookup: #{dump_object(@lookup)}"))
+
 
 if exports?
   exports.Row = root.Row

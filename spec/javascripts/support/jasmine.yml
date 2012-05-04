@@ -1,6 +1,8 @@
-src_dir: public/javascripts/compiled
 src_files:
-  - "**/*.js"
+  - "lib/assets/javascripts/jquery-1.7.2.js"
+  - "lib/assets/javascripts/jshashtable-2.1_src.js"
+  - "lib/assets/javascripts/underscore.js"
+  - "public/javascripts/compiled/**/*.js"
 
 spec_dir: spec/javascripts/compiled
 spec_files:
