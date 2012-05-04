@@ -1,4 +1,3 @@
-console.log "RUNNING!!!"
 source_dir = "../../app/assets/javascripts"
 
 Diff = require("#{source_dir}/diff.js")
