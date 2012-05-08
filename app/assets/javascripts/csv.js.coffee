@@ -7,6 +7,8 @@ class root.CsvReader
     @rows        = (new Row(raw_row) for raw_row in @csv_data[1..-1])
 
   is_valid_csv_file: ->
+    for row in @rows
+      return false if row.is_empty()
     true
 
   to_json: ->
@@ -47,6 +49,9 @@ class HeaderRow
 class Row
   constructor: (values) ->
     @values = values.split(",")
+
+  is_empty: ->
+    @values.length == 1
 
   to_json_array: (header_row) ->
     result = "{"
