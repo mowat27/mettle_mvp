@@ -6,6 +6,9 @@ class root.CsvReader
     @header_row  = new HeaderRow(@csv_data[0].split(","))
     @rows        = (new Row(raw_row) for raw_row in @csv_data[1..-1])
 
+  is_valid_csv_file: ->
+    true
+
   to_json: ->
     row_data = @row_data()
     """

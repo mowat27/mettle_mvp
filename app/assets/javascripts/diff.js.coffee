@@ -54,8 +54,11 @@ class root.Diff.Comparison
 
       reader.onloadend = (evt) ->
         csv_reader = new root.CsvReader(evt.target.result)
-        json = "#{csv_reader.to_json()}\n"
-        on_completion.apply(self, [json])
+        if csv_reader.is_valid_csv_file()
+          json = "#{csv_reader.to_json()}\n"
+          on_completion.apply(self, [json])
+        else
+          window.location = "pages/help"
 
       reader.readAsText(file)
 
