@@ -2,15 +2,12 @@ source_dir = "../../app/assets/javascripts"
 
 root = global ? window
 Diff = root
-Row = Diff.Row
-DataSet = Diff.DataSet
-Index = Diff.Index
 
 _ = root._
 
-describe "Diff", ->
+describe "root.Diff", ->
   beforeEach ->
-    @empty_data_set = new DataSet []
+    @empty_data_set = new root.Diff.DataSet []
 
     to_string = (obj) ->
       if obj? && obj.toString?
@@ -79,7 +76,7 @@ describe "Diff", ->
         @message = ->
           actual_values = @actual.values ? "undefined"
           "expected row with values [#{expected_values}] got [#{actual_values}]"
-        expected = new Row(expected_values)
+        expected = new root.Diff.Row(expected_values)
         @actual.equals(expected)
 
       toBeARowWithValues: (expected_values) ->
@@ -103,14 +100,14 @@ describe "Diff", ->
         ["a","d","c"]
         ["a","b","e"]
       ]
-      data_set_all = new DataSet(@data)
-      data_set_ac = new DataSet(@data[0..1])
-      @index = new Index(["col1","col3"], @column_names, data_set_all)
-      @other = new Index(["col1","col3"], @column_names, data_set_all)
-      @other2 = new Index(["col1","col3"], @column_names, data_set_ac)
+      data_set_all = new root.Diff.DataSet(@data)
+      data_set_ac = new root.Diff.DataSet(@data[0..1])
+      @index = new root.Diff.Index(["col1","col3"], @column_names, data_set_all)
+      @other = new root.Diff.Index(["col1","col3"], @column_names, data_set_all)
+      @other2 = new root.Diff.Index(["col1","col3"], @column_names, data_set_ac)
 
-      @keygroup_ac = new DataSet([@data[0], @data[1]])
-      @keygroup_ae = new DataSet([@data[2]])
+      @keygroup_ac = new root.Diff.DataSet([@data[0], @data[1]])
+      @keygroup_ae = new root.Diff.DataSet([@data[2]])
 
 
     describe "with 2 identical indexes", ->
@@ -121,8 +118,8 @@ describe "Diff", ->
             matches.push [key, lhs, rhs]
 
         expect(matches).toIsEqual([
-          [ new Row(["a","e"]), @keygroup_ae, @keygroup_ae ],
-          [ new Row(["a","c"]), @keygroup_ac, @keygroup_ac ],
+          [ new root.Diff.Row(["a","e"]), @keygroup_ae, @keygroup_ae ],
+          [ new root.Diff.Row(["a","c"]), @keygroup_ac, @keygroup_ac ],
         ])
 
       it "does nothing when on_match() is not provided", ->
@@ -136,7 +133,7 @@ describe "Diff", ->
         Diff.intersection @index, @other2,
           on_unmatched_lhs: (key, rows) ->
             rejects = [key, rows]
-        expect(rejects).toIsEqual([new Row(["a","e"]), @keygroup_ae])
+        expect(rejects).toIsEqual([new root.Diff.Row(["a","e"]), @keygroup_ae])
 
       it "does nothing when on_unmatched_lhs() is not defined", ->
         rejects = []
@@ -150,7 +147,7 @@ describe "Diff", ->
         Diff.intersection @other2, @index,
           on_unmatched_rhs: (key, rows) ->
             rejects = [key, rows]
-        expect(rejects).toIsEqual([new Row(["a","e"]), @keygroup_ae])
+        expect(rejects).toIsEqual([new root.Diff.Row(["a","e"]), @keygroup_ae])
 
       it "does nothing when on_unmatched_rhs() is not defined", ->
         rejects = []
@@ -158,42 +155,42 @@ describe "Diff", ->
           on_match: ->
             null
 
-  describe "Diff.cartesian", ->
+  describe "cartesian", ->
     beforeEach ->
       @numbers = [[1],[2]]
-      @numbers_ds = new DataSet(@numbers)
+      @numbers_ds = new root.Diff.DataSet(@numbers)
       @letters = [["a"],["b"]]
-      @letters_ds = new DataSet(@letters)
+      @letters_ds = new root.Diff.DataSet(@letters)
 
     it "calculates and empty array for 2 empty data sets", ->
       result = Diff.cartesian(@empty_data_set, @empty_data_set)
       expect(result).toIsEqual([])
 
     it "calculates a match for 2 single-row data sets", ->
-      result = Diff.cartesian(new DataSet([[1]]), new DataSet([["a"]]))
+      result = Diff.cartesian(new root.Diff.DataSet([[1]]), new root.Diff.DataSet([["a"]]))
       expected = [
-        [new Row([1]), new Row(["a"])]
+        [new root.Diff.Row([1]), new root.Diff.Row(["a"])]
       ]
       expect(result).toIsEqual(expected)
 
     it "calculates the product of 2 multi-row data sets", ->
       result = Diff.cartesian(@numbers_ds, @letters_ds)
       expected = [
-        [new Row([1]), new Row(["a"])],
-        [new Row([1]), new Row(["b"])],
-        [new Row([2]), new Row(["a"])],
-        [new Row([2]), new Row(["b"])]
+        [new root.Diff.Row([1]), new root.Diff.Row(["a"])],
+        [new root.Diff.Row([1]), new root.Diff.Row(["b"])],
+        [new root.Diff.Row([2]), new root.Diff.Row(["a"])],
+        [new root.Diff.Row([2]), new root.Diff.Row(["b"])]
       ]
       expect(result).toIsEqual(expected)
 
-  describe "Diff.Comparison", ->
+  describe "Comparison", ->
     beforeEach ->
       @column_names = ["col1","col2","col3"]
       @values = [
         ["a","b","c"]
         ["a","b","e"]
       ]
-      @data_set = new DataSet(@values)
+      @data_set = new root.Diff.DataSet(@values)
 
       @row1 =
         col1: {expected: "a", actual: "a"}
@@ -207,7 +204,7 @@ describe "Diff", ->
 
     describe "with identical data sets", ->
       beforeEach ->
-        @comparison = new Comparison(["col1","col3"])
+        @comparison = new root.Diff.Comparison(["col1","col3"])
         @comparison.expected.column_names = @column_names
         @comparison.expected.data_set = @data_set
 
@@ -227,9 +224,9 @@ describe "Diff", ->
 
     describe "with differently ordered data sets", ->
       beforeEach ->
-        other = new root.DataSet(@values.reverse())
+        other = new root.Diff.DataSet(@values.reverse())
 
-        @comparison = new Comparison(@column_names)
+        @comparison = new root.Diff.Comparison(@column_names)
         @comparison.expected.column_names = @column_names
         @comparison.expected.data_set = @data_set
 
@@ -249,9 +246,9 @@ describe "Diff", ->
     describe "with multiple values for a key", ->
       beforeEach ->
         @values.push ["a","b","c"]
-        other = new root.DataSet(@values)
+        other = new root.Diff.DataSet(@values)
 
-        @comparison = new Comparison(@column_names)
+        @comparison = new root.Diff.Comparison(@column_names)
         @comparison.expected.column_names = @column_names
         @comparison.expected.data_set = @data_set
 
@@ -269,7 +266,7 @@ describe "Diff", ->
         expect(@comparison.to_json()).toEqual(expected)
 
 
-  describe "Diff.DataSet", ->
+  describe "DataSet", ->
     beforeEach ->
       @column_names = ["col1","col2","col3"]
       @values = [
@@ -277,7 +274,7 @@ describe "Diff", ->
         ["a","d","c"]
         ["a","b","e"]
       ]
-      @data_set = new DataSet(@values)
+      @data_set = new root.Diff.DataSet(@values)
 
     describe "creating from JSON", ->
       it "creates a dataset from JSON", ->
@@ -291,8 +288,8 @@ describe "Diff", ->
   ]
 }
 """
-        expected = new DataSet @values
-        expect(DataSet.create_from_json(json)).toEquals(expected)
+        expected = new root.Diff.DataSet @values
+        expect(root.Diff.DataSet.create_from_json(json)).toEquals(expected)
 
 
     describe "#is_empty", ->
@@ -305,17 +302,17 @@ describe "Diff", ->
 
     describe "#equals", ->
       it "is equal when compared to an identical set", ->
-        expect(@data_set).toEquals(new DataSet(@values))
-        expect(@data_set).toIsEqual(new DataSet(@values))
+        expect(@data_set).toEquals(new root.Diff.DataSet(@values))
+        expect(@data_set).toIsEqual(new root.Diff.DataSet(@values))
 
       it "is not equal when compared to an empty data set", ->
         expect(@data_set).toNotEquals(@empty_data_set)
 
       it "is not equal when compared to a smaller data set", ->
-        expect(@data_set).toNotEquals(new DataSet(@values[0..1]))
+        expect(@data_set).toNotEquals(new root.Diff.DataSet(@values[0..1]))
 
       it "is not equal when compared to a larger data set", ->
-        expect(@data_set).toNotEquals(new DataSet(@values.push(["x","x","x"])))
+        expect(@data_set).toNotEquals(new root.Diff.DataSet(@values.push(["x","x","x"])))
 
       it "is not equal when the rows do not match", ->
         new_values = [
@@ -323,7 +320,7 @@ describe "Diff", ->
           ["a","d","c"]
           ["a","XXXXX","e"]
         ]
-        other = new DataSet(new_values)
+        other = new root.Diff.DataSet(new_values)
         expect(@data_set).toNotEquals(other)
 
       it "is not equal when compared to an object that has no rows", ->
@@ -333,8 +330,8 @@ describe "Diff", ->
       expect(@data_set).toHaveRowsWithValues(@values)
 
     it "can be built from an array of Rows", ->
-      rows = (new Row(array) for array in @values)
-      @data_set = new DataSet(rows)
+      rows = (new root.Diff.Row(array) for array in @values)
+      @data_set = new root.Diff.DataSet(rows)
       expect(@data_set).toHaveRowsWithValues(@values)
 
     it "creates a slice through its rows", ->
@@ -344,17 +341,17 @@ describe "Diff", ->
         ["a","c"]
         ["a","e"]
       ]
-      expect(result).toEquals(new DataSet(expected_values))
+      expect(result).toEquals(new root.Diff.DataSet(expected_values))
 
     it "filters rows by key value", ->
-      result = @data_set.filter(@column_names, ["col1","col2"], new Row(["a","b"]))
+      result = @data_set.filter(@column_names, ["col1","col2"], new root.Diff.Row(["a","b"]))
       @actual = result
       all_values = [["a","b","c"],["a","b","e"]]
       expect(@actual.rows).toBeDefined()
       expect(@actual.rows.length).toEqual(all_values.length)
       expect(@actual.rows[i]).toHaveValues(these_values) for i, these_values of all_values
 
-  describe "Diff.Index", ->
+  describe "Index", ->
     beforeEach ->
       @column_names = ["col1","col2","col3"]
       @data = [
@@ -362,57 +359,36 @@ describe "Diff", ->
         ["a","d","c"]
         ["a","b","e"]
       ]
-      data_set = new DataSet(@data)
-      @index = new Index(["col1","col3"], @column_names, data_set)
-      @other = new Index(["col1","col3"], @column_names, data_set)
-      @other2 = new Index(["col1","col3"], @column_names, new DataSet(@data[0..1]))
+      data_set = new root.Diff.DataSet(@data)
+      @index = new root.Diff.Index(["col1","col3"], @column_names, data_set)
+      @other = new root.Diff.Index(["col1","col3"], @column_names, data_set)
+      @other2 = new root.Diff.Index(["col1","col3"], @column_names, new root.Diff.DataSet(@data[0..1]))
 
     it "returns the key values", ->
-      expect(@index.key_values()).toEquals(new DataSet [["a","e"],["a","c"]])
+      expect(@index.key_values()).toEquals(new root.Diff.DataSet [["a","e"],["a","c"]])
 
     describe "#get", ->
       it "returns a data set containing rows matching a key", ->
-        first_entry = @index.get(new Row(["a","c"]))
-        expect(first_entry).toEquals(new DataSet @data[0..1])
-        second_entry = @index.get(new Row(["a","e"]))
-        expect(second_entry).toEquals(new DataSet [@data[2]])
+        first_entry = @index.get(new root.Diff.Row(["a","c"]))
+        expect(first_entry).toEquals(new root.Diff.DataSet @data[0..1])
+        second_entry = @index.get(new root.Diff.Row(["a","e"]))
+        expect(second_entry).toEquals(new root.Diff.DataSet [@data[2]])
 
       it "returns an empty data set when no match found", ->
-        result = @index.get(new Row(["x","x"]))
+        result = @index.get(new root.Diff.Row(["x","x"]))
         expect(result).toEquals(@empty_data_set)
-
-    # it "verifies _.isEqual()", ->
-    #   o1 =
-    #     foo: "bar"
-    #     isEqual: (other) ->
-    #       true
-
-
-    #   expect([1,2]).toEqual([1,2])
-    #   expect(_.isEqual([1,2],[1,2])).toBeTruthy()
-    #   expect(_.isEqual([1,2],[1,3])).toBeFalsy()
-    #   expect([1,2] == [1,3]).toBeFalsy()
-    #   expect([1,2]).toNotEqual([1,3])
-
-    #   expect(_.isEqual(@index, @index)).toBeTruthy()
-    #   expect(_.isEqual(@index, @other2)).toBeTruthy()
-    #   # expect(@index == @other).toBeTruthy()
-    #   # expect(_.isEqual(new DataSet(@data), new DataSet(@data))).toBeTruthy()
-
-    #   expect(_.isEqual(o1,99)).toBeTruthy()
-    #   # expect(o1 == 99).toBeTruthy()
 
     describe "#merge", ->
       it "calculates the matches between 2 indexes", ->
         expected =
           key: ["col1","col3"]
-          values: new Row ["a","c"]
+          values: new root.Diff.Row ["a","c"]
           rows:
-            lhs: new Row ["a","b","c"]
-            rhs: new Row ["a","x","c"]
+            lhs: new root.Diff.Row ["a","b","c"]
+            rhs: new root.Diff.Row ["a","x","c"]
 
-        lhs_index = new Index(["col1","col3"], @column_names, new DataSet([["a","b","c"]]))
-        rhs_index = new Index(["col1","col3"], @column_names, new DataSet([["a","x","c"]]))
+        lhs_index = new root.Diff.Index(["col1","col3"], @column_names, new root.Diff.DataSet([["a","b","c"]]))
+        rhs_index = new root.Diff.Index(["col1","col3"], @column_names, new root.Diff.DataSet([["a","x","c"]]))
 
         result = lhs_index.merge(rhs_index)
         expect(_.isEqual(expected, result)).toBeTruthy()
@@ -420,30 +396,30 @@ describe "Diff", ->
 
     describe "#intersection", ->
       it "calculates a data set containing matching keys", ->
-        index2 = new Index(["col1","col3"], @column_names, new DataSet([["a","b","c"]]))
+        index2 = new root.Diff.Index(["col1","col3"], @column_names, new root.Diff.DataSet([["a","b","c"]]))
         result = @index.intersection(index2)
-        expect(result).toEquals(new DataSet [["a","c"]])
+        expect(result).toEquals(new root.Diff.DataSet [["a","c"]])
 
-  describe "Diff.Row", ->
+  describe "root.Diff.Row", ->
     beforeEach ->
       @column_names = ["a","b","c","d","e"]
-      @row = new Row(["v0","v1","v2","v3","v4"])
+      @row = new root.Diff.Row(["v0","v1","v2","v3","v4"])
 
     describe "#equals", ->
       it "is true when both rows contain the same values", ->
-        other = new Row(["v0","v1","v2","v3","v4"])
+        other = new root.Diff.Row(["v0","v1","v2","v3","v4"])
         expect(@row).toEquals(other)
 
       it "is false when the rows contain different values", ->
-        other = new Row(["v4","v3","v2","v1","v0"])
+        other = new root.Diff.Row(["v4","v3","v2","v1","v0"])
         expect(@row).toNotEquals(other)
 
       it "is false when other is shorter than this row", ->
-        other = new Row(["v0","v1","v2"])
+        other = new root.Diff.Row(["v0","v1","v2"])
         expect(@row).toNotEquals(other)
 
       it "is false when other is longer than this row", ->
-        other = new Row(["v0","v1","v2","v3","v4","v5"])
+        other = new root.Diff.Row(["v0","v1","v2","v3","v4","v5"])
         expect(@row).toNotEquals(other)
 
       it "is false when the comparison object is not a Row", ->
@@ -460,4 +436,4 @@ describe "Diff", ->
     describe "#slice", ->
       it "slices a row by column name", ->
         result = @row.slice @column_names, ["a","c"]
-        expect(result).toEquals(new Row ["v0","v2"])
+        expect(result).toEquals(new root.Diff.Row ["v0","v2"])

@@ -1,1 +1,1 @@
-rvm use 1.9.2 --create 1.9.2@mettle_mvp
+rvm use --create 1.9.3@mettle_mvp

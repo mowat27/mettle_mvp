@@ -1,6 +1,8 @@
 root = global ? window
 Hashtable = root.Hashtable
 
+root.Diff = {}
+
 root.intersection = (lhs_index, rhs_index, callbacks) ->
   return if !callbacks?
 
@@ -33,15 +35,15 @@ root.cartesian = (lhs,rhs) ->
       result.push([lhs_row, rhs_row])
   result
 
-class root.Comparison
+class root.Diff.Comparison
   constructor: (key) ->
     @key = key
     @expected =
       column_names: []
-      data_set: new root.DataSet []
+      data_set: new root.Diff.DataSet []
     @actual =
       column_names: []
-      data_set: new root.DataSet []
+      data_set: new root.Diff.DataSet []
     @json = '{"column_names": [], "results": []}'
 
   load_csv_file = (file_list, on_completion) ->
@@ -63,7 +65,7 @@ class root.Comparison
     load_csv_file file_list, (json) ->
       src = JSON.parse(json)
       target.column_names = src.column_names
-      target.data_set = root.DataSet.create_from_json(json)
+      target.data_set = root.Diff.DataSet.create_from_json(json)
 
   zip = (lhs, rhs, func) ->
     for i, lhs_item of lhs
@@ -80,8 +82,8 @@ class root.Comparison
 
   join = (key, column_names, expected, actual) ->
     indexes =
-      expected: new root.Index(key, column_names, expected)
-      actual: new root.Index(key, column_names, actual)
+      expected: new root.Diff.Index(key, column_names, expected)
+      actual: new root.Diff.Index(key, column_names, actual)
 
     results = []
     intersection indexes.expected, indexes.actual,
@@ -101,7 +103,7 @@ class root.Comparison
     @json
 
 
-class root.DataSet
+class root.Diff.DataSet
   is_row_array = (source) ->
     source[0]? && source[0].values?
 
@@ -109,7 +111,7 @@ class root.DataSet
     if is_row_array(source)
       @rows = source
     else
-      @rows = (new root.Row(values) for values in source)
+      @rows = (new root.Diff.Row(values) for values in source)
 
   @create_from_json: (json) ->
     json_data = JSON.parse("#{json}")
@@ -119,14 +121,14 @@ class root.DataSet
       for column_name, value of row_data
         this_row.push(value)
       values.push(this_row)
-    new DataSet(values)
+    new root.Diff.DataSet(values)
 
   is_empty: ->
     @rows.length == 0
 
   slice: (column_names, key) ->
     result = (row.slice(column_names, key) for row in @rows)
-    new root.DataSet(result)
+    new root.Diff.DataSet(result)
 
   filter: (column_names, key, search_for) ->
     result = []
@@ -134,7 +136,7 @@ class root.DataSet
       key_values_for_this_row = row.slice(column_names, key)
       if key_values_for_this_row.equals(search_for)
         result.push(row)
-    new DataSet result
+    new root.Diff.DataSet result
 
   each: (func) ->
     for row in @rows
@@ -145,7 +147,7 @@ class root.DataSet
       func(index, row)
 
   toString: ->
-    result = "{DataSet rows = ["
+    result = "{root.Diff.DataSet rows = ["
     for row in @rows
       result += "#{row.toString()},"
     result.replace(/,*$/, "]}")
@@ -160,7 +162,7 @@ class root.DataSet
   isEqual: @equals
 
 
-class root.Row
+class root.Diff.Row
   constructor: (values) ->
     @values = values
 
@@ -173,7 +175,7 @@ class root.Row
 
   slice: (column_names, key) ->
     values = (@get(column_names, key_column) for key_column in key)
-    new root.Row(values)
+    new root.Diff.Row(values)
 
   equals: (other) ->
     return false unless other.values
@@ -188,7 +190,7 @@ class root.Row
       func(i, value, other.values[i])
 
   toString: ->
-    result = "{Row values = ["
+    result = "{root.Diff.Row values = ["
     for value in @values
       if value.toString?
         result += "#{value.toString()},"
@@ -197,7 +199,7 @@ class root.Row
     result.replace(/,*$/, "]}")
 
 
-class root.Index
+class root.Diff.Index
   constructor: (key, column_names, data_set) ->
     @key = key
     @column_names = column_names
@@ -215,12 +217,12 @@ class root.Index
       @lookup.put(key_value, filtered_data_set)
 
   key_values: ->
-    new DataSet(@lookup.keys())
+    new root.Diff.DataSet(@lookup.keys())
 
   get: (search) ->
     result = @lookup.get search
     return result if result
-    new DataSet([])
+    new root.Diff.DataSet([])
 
   has_key: (search) ->
     !@get(search).is_empty()
@@ -231,7 +233,7 @@ class root.Index
     for i, this_key_row of @key_values().rows
       matching_rows = other_keys.filter(@key, @key, this_key_row)
       result.push(this_key_row) unless matching_rows.is_empty()
-    new DataSet(result)
+    new root.Diff.DataSet(result)
 
   merge: (other) ->
     key_value = @lookup.keys()[0]
@@ -256,12 +258,3 @@ class root.Index
     result.append(pre("Key: [#{@key}]"))
     result.append(pre("Column Names: [#{@column_names}]"))
     result.append(pre("Lookup: #{dump_object(@lookup)}"))
-
-
-if exports?
-  exports.Row = root.Row
-  exports.DataSet = root.DataSet
-  exports.Index = root.Index
-  exports.intersection = intersection
-  exports.cartesian = cartesian
-
