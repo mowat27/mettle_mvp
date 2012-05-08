@@ -5,7 +5,38 @@ Diff = root
 
 _ = root._
 
+diff_matchers =
+  toBehaveLikeARow: ->
+    @message = ->
+      "#{@actual} is not a row"
+    return false unless @actual? && @actual.values?
+    true
+
+  toHaveValues: (expected_values) ->
+    @message = ->
+      actual_values = @actual.values ? "undefined"
+      "expected row with values [#{expected_values}] got [#{actual_values}]"
+    expected = new root.Diff.Row(expected_values)
+    @actual.equals(expected)
+
+  toBeARowWithValues: (expected_values) ->
+    expect(@actual).toBeDefined()
+    expect(expected_values).toBeDefined()
+    expect(@actual).toBehaveLikeARow()
+    expect(@actual).toHaveValues(expected_values)
+    true
+
+  toHaveRowsWithValues: (values) ->
+    expect(@actual.rows).toBeDefined()
+    expect(@actual.rows.length).toEqual(values.length)
+    expect(@actual.rows[i]).toBeARowWithValues(values[i]) for i, value of values
+    true
+
 describe "root.Diff", ->
+  beforeEach ->
+    @empty_data_set = new root.Diff.DataSet []
+    @addMatchers(diff_matchers)
+
   describe "intersection", ->
     beforeEach ->
       @column_names = ["col1","col2","col3"]
