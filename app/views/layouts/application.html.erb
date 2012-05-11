@@ -8,6 +8,9 @@
 </head>
 <body>
 <h1>Mettle - regression testing for big data sets</h1>
+<% if params[:error_message] %>
+  <div id='errors'><%= params[:error_message] %></div>
+<% end %>
 
 <%= yield %>
 

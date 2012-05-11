@@ -61,4 +61,5 @@ MettleMvp::Application.routes.draw do
 
 
   match '/:id' => 'pages#show', :as => :static, :via => :get
+  resources :help, :only => :new
 end
