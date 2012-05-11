@@ -1,1 +1,17 @@
 <h2>Help</h2>
+
+<h3>What is Mettle?</h3>
+
+<p>Mettle is a regression testing framework for testing big data sets.</p>
+
+<h3>How do I structure my data for Mettle to use?</h3>
+
+<p>Mettle compares 2 CSV files formatted according the these rules
+<ul>
+  <li> Fields in the files must be comma separated </li>
+  <li> Each file must have its column names in the first row </li>
+  <li> All values must be enclosed in quotes (note that Mettle only performs string comparison at the moment) </li>
+  <li> Both files have the same fields in the same order </li>
+  <li> The first column field in each file contains a unique (i.e. primary) key </li>
+</ul>
+</p>
