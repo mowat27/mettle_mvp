@@ -1,0 +1,19 @@
+#header {
+  border: 2px solid red;
+}
+
+#footer {
+  width: 80%;
+}
+
+#signup_form {
+  display: inline-block;
+  border: 2px solid green;
+  width: 25%;
+}
+
+#feedback_form {
+  display: inline-block;
+  border: 2px solid blue;
+  width: 65%;
+}
