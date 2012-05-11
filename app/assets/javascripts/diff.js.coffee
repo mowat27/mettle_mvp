@@ -58,7 +58,7 @@ class root.Diff.Comparison
           json = "#{csv_reader.to_json()}\n"
           on_completion.apply(self, [json])
         else
-          window.location = "/help/new?error_message=Error: The csv file \"#{file.fileName}\" contained a formatting error and could not be read"
+          window.location = "/help?error_message=Error: The csv file \"#{file.fileName}\" contained a formatting error and could not be read"
 
       reader.readAsText(file)
 
