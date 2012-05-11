@@ -7,15 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h1>Mettle - regression testing for big data sets</h1>
-<% if params[:error_message] %>
-  <div id='errors'><%= params[:error_message] %></div>
-<% end %>
+  <h1>Mettle - regression testing for big data sets</h1>
+  <% if params[:error_message] %>
+    <div id='errors'><%= params[:error_message] %></div>
+  <% end %>
 
-<%= link_to "Try Mettle in your browser", "/" %>
-<%= link_to "About Mettle", "/about" %>
+  <%= link_to "Try Mettle in your browser", "/" %>
+  <%= link_to "About Mettle", "/about" %>
 
-<%= yield %>
+  <%= yield %>
 
+  <%= render 'shared/sign_up_form' %>
+  <%= render 'shared/feedback_form' %>
 </body>
 </html>

@@ -1,0 +1,8 @@
+<div id='feedback_form'>
+  <header>Feedback:</header>
+  <p>Did you find this useful? Send us your feedback: </p>
+  <%= simple_form_for @feedback do |f| %>
+    <%= f.input :description %>
+    <%= f.button :submit, "Send Feedback" %>
+  <% end %>
+</div>

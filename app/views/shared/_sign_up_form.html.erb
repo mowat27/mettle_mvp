@@ -1,0 +1,8 @@
+<div id='signup_form'>
+  <header>Sign Up:</header>
+  <p>Want to know more?  Sign up for our newsletter: </p>
+  <%= simple_form_for @customer do |f| %>
+    <%= f.input :email_address %>
+    <%= f.button :submit, "Sign Up" %>
+  <% end %>
+</div>
