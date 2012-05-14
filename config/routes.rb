@@ -25,8 +25,8 @@ MettleMvp::Application.routes.draw do
   #     end
   #   end
 
-  resources :customers, :only => :create
-  resources :feedbacks, :only => :create
+  resources :customers, :only => [:create, :new]
+  resources :feedbacks, :only => [:create, :new]
 
   # Sample resource route with sub-resources:
   #   resources :products do
