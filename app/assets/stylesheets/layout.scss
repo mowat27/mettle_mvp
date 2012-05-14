@@ -79,7 +79,7 @@ a {
 }
 
 
-#nav {
+.linkbar {
   float: right;
   li {
     display: inline;
@@ -92,6 +92,10 @@ a {
   padding: 1em;
   width: 95%;
   margin: auto;
+
+  h2 {
+    font-size: 1.5em;
+  }
 }
 
 #signup_form {

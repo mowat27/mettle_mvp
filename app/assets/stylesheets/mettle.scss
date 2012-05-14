@@ -1,3 +1,7 @@
+#test-results-table {
+  font-family: 'Podkova', serif;
+}
+
 .passed {
   color: #25ff2a; }
 
@@ -13,14 +17,17 @@
   #summary a.total {
     color: white; }
 
-#results table {
-  background: black;
+#results {
+  padding: 20px;
+
+  table {
+    background: black;
+  }
+
+  td.failed {
+    border: 1px solid red;
+  }
 }
-#results th {
-  color: white;
-  text-align: left; }
-#results td.failed {
-  border: 1px solid red; }
 
 
 .failed-columns-only {
@@ -36,6 +43,11 @@
   background: black; }
 .results th {
   color: white;
-  text-align: left; }
+  text-align: left;
+  padding-right: 5px; }
+.results td {
+  padding-right: 5px; }
+
+
 .results td.failed {
   border: 1px solid red; }

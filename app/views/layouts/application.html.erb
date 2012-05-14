@@ -3,6 +3,7 @@
 <head>
   <title>Mettle</title>
   <link href='http://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Podkova' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -17,7 +18,7 @@
       <div id='errors'><%= params[:error_message] %></div>
     <% end %>
 
-    <ul id="nav">
+    <ul id="nav" class="linkbar">
       <li> <%= link_to "Try Mettle in your browser", "/" %> </li>
       <li> <%= link_to "About Mettle", "/about" %> </li>
       <li> <%= link_to "Sign Up", "/customers/new" %> </li>
