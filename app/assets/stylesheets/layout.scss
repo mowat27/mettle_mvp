@@ -1,0 +1,128 @@
+/*
+Sticky Footer Solution
+by Steve Hatcher
+http://stever.ca
+http://www.cssstickyfooter.com
+*/
+
+* {margin:0;padding:0;}
+
+/* must declare 0 margins on everything, also for main layout components use padding, not
+vertical margins (top and bottom) to add spacing, else those margins get added to total height
+and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */
+
+html, body {height: 100%;}
+
+#wrap {min-height: 100%;}
+
+#main {overflow:auto;
+  padding-bottom: 180px;}  /* must be same height as the footer */
+
+#footer {
+  position: relative;
+  margin-top: -180px; /* negative value of footer height */
+  height: 180px;
+  clear:both;
+  border-top: 2px solid black;
+}
+
+/*Opera Fix*/
+body:before {
+  /* thanks to Maleika (Kohoutec)*/
+  content:"";
+  height:100%;
+  float:left;
+  width:0;
+  margin-top:-32767px;/* thank you Erik J - negate effect of float*/
+}
+
+
+
+/* IMPORTANT
+
+You also need to include this conditional style in the <head> of your HTML file to feed this style to IE 6 and lower and 8 and higher.
+
+<!--[if !IE 7]>
+  <style type="text/css">
+    #wrap {display:table;height:100%}
+  </style>
+<![endif]-->
+
+*/
+
+body {
+  background: #376BA5;
+}
+
+#header {
+  height: 3em;
+  padding: 0.5em;
+  font: normal 11px "Lucida Grande", Helvetica, sans-serif;
+  color: white;
+
+  h1 {
+    font-size: 2em;
+  }
+}
+
+#logo {
+  float: left;
+  clear: right;
+}
+
+
+#nav {
+  float: right;
+  li {
+    display: inline;
+    margin: 0.5em;
+  }
+
+  a {
+    color: white;
+  }
+}
+
+#content {
+  background: #85A9D2;
+  padding: 1em;
+  width: 95%;
+  margin: auto;
+}
+
+#signup_form {
+  display: inline-block;
+  /*border: 2px solid brown;*/
+  width: 25%;
+  height: 100%;
+  vertical-align: top;
+  /*background: orange;*/
+
+  textarea {
+    position: relative;
+    height: 50px;
+    background: red;
+  }
+}
+
+#feedback_form {
+  display: inline-block;
+  /*border: 2px solid brown;*/
+	width: 65%;
+  height: 100%;
+  /*background: orange;*/
+}
+
+.step {
+  display: inline-block;
+  /*border: 1px solid orange;*/
+  /*background: yellow;*/
+
+  width: 400px;
+  height: 75px;
+  position: relative;
+  margin-top: 0px;
+}
+
+
+

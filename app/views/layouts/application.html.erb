@@ -8,17 +8,24 @@
 </head>
 <body>
   <div id='header'>
-    <h1>Mettle - regression testing for big data sets</h1>
+    <div id='logo'>
+      <h1>Mettle - regression testing for big data sets</h1>
+    </div>
+
     <% if params[:error_message] %>
       <div id='errors'><%= params[:error_message] %></div>
     <% end %>
 
-    <%= link_to "Try Mettle in your browser", "/" %>
-    <%= link_to "About Mettle", "/about" %>
+    <ul id="nav">
+      <li> <%= link_to "Try Mettle in your browser", "/" %> </li>
+      <li> <%= link_to "About Mettle", "/about" %> </li>
+    </ul>
   </div>
 
   <div id='wrap'>
-    <%= yield %>
+    <div id='content'>
+      <%= yield %>
+    </div>
   </div>
 
   <div id='footer'>
