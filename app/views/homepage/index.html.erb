@@ -2,18 +2,23 @@
   <h2>Compare CSV Files</h2>
 </div>
 
-<div id="data_set_test">
-  <div id="expected_results">
-    <p>Load expected results</p>
+<div id="upload_files">
+  <div class="step">
+    <header>Step 1: Load expected results</header>
     <input type="file" id="expected_csv_input" name="expected_csv_input" accept="text/csv"/>
     <div id="expected_results_data"></div>
-  </div>
-  <div id="actual_results">
-    <p>Load actual results</p>
+  </div>      
+
+  <div class="step">
+    <header>Step 2: Load actual results</header>
     <input type="file" id="actual_csv_input" name="actual_csv_input" accept="text/csv"/>
     <div id="actual_results_data"></div>
-  </div>
-  <input id='compare-button' type='submit' value="Compare Files"></button>
-
+  </div>      
+  <div class="step">
+    <header>Step 3:</header>
+    <div id="description">
+      <input id='compare-button' type='submit' value="Compare Files"/>
+    </div>      
+  </div>      
   <div id="results_table_test"></div>
 </div>

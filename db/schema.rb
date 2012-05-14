@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20120418105258) do
 
   create_table "customers", :force => true do |t|
     t.string   "email_address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "feedbacks", :force => true do |t|
