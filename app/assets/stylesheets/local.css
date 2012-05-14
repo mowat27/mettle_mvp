@@ -1,23 +1,4 @@
-.thumb {
-  height: 75px;
-  border: 1px solid #000;
-  margin: 10px 5px 0 0;
-}
 
-#upload_files {
-	
-}
-
-.step {
-	display: inline-block;
-	border: 1px solid orange;
-	background: yellow;
-
-	width: 400px;
-	height: 75px;
-	position: relative;
-	margin-top: 0px;
-}
 
 /*ul {
 	display: inline-block;

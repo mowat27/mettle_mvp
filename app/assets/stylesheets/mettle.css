@@ -1,14 +1,3 @@
-* {
-  padding: 5px; }
-
-body {
-  background: gray; }
-
-h2 {
-  margin: 0;
-  padding: 0;
-  text-decoration: underline; }
-
 .passed {
   color: #25ff2a; }
 
