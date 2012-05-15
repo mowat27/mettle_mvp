@@ -51,7 +51,7 @@ You also need to include this conditional style in the <head> of your HTML file 
 */
 
 * {
-  font-family: 'Comfortaa', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
 body {
@@ -111,18 +111,3 @@ a {
 	width: 65%;
   height: 100%;
 }
-
-.step {
-  background: #FED699;
-  margin: 0.5em;
-  position: relative;
-  padding: 0.5em;
-
-  header {
-    width: 20%;
-    display: inline-block;
-  }
-}
-
-
-

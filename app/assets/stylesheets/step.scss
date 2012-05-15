@@ -1,0 +1,40 @@
+$step_bg : #F5F5F5;
+
+.step {
+  margin              : 0.5em 0em;
+  position            : relative;
+  padding             : 0.5em;
+  height              : 80px;
+  border              : 5px solid darken($step_bg, 8);
+  padding-left        : 100px;
+  background-color    : $step_bg;
+  background-repeat   : no-repeat;
+  background-position : left center;
+
+  input{
+    padding   : 0.2em;
+    font-size : 1em;
+  }
+
+  header {
+    color     : darken($step_bg, 30);
+    display   : block;
+    font-size : 1.5em;
+  }
+
+  &.one  { background-image: url('/assets/step_1_bg.png') }
+  &.two  { background-image: url('/assets/step_2_bg.png') }
+  &.three{ background-image: url('/assets/step_3_bg.png') }
+
+  &.complete{
+    header { color: #222; }
+  }
+
+  &.current{
+    background-color : #CCDBC9;
+    border-color     : darken(#CCDBC9, 8);
+
+    header { color: #222; }
+  }
+
+}
