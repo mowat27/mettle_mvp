@@ -88,14 +88,15 @@ a {
 }
 
 #content {
-  background: #85A9D2;
-  padding: 1em;
-  width: 95%;
-  margin: auto;
+  background : #FFF;
+  padding    : 1em;
+  width      : 95%;
+  margin     : auto;
+  border     : 5px solid darken(#fff, 5);
 
-  h2 {
-    font-size: 1.5em;
-  }
+  h2 { font-size: 1.5em; }
+
+  a { color: #376BA5; }
 }
 
 #signup_form {

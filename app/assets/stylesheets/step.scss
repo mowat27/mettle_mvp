@@ -27,6 +27,9 @@ $step_bg : #F5F5F5;
   &.three{ background-image: url('/assets/step_3_bg.png') }
 
   &.complete{
+    background-color : #DCD9CA;
+    border-color     : darken(#DCD9CA, 8);
+
     header { color: #222; }
   }
 
