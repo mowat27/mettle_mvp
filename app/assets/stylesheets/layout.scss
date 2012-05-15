@@ -55,7 +55,7 @@ You also need to include this conditional style in the <head> of your HTML file 
 }
 
 body {
-  background: #376BA5;
+  background: #ABC;
 }
 
 a {
@@ -98,7 +98,7 @@ a {
 
       &.current{
 
-        background-color: darken(#376BA5, 8);
+        background-color: darken(#ABC, 8);
       }
     }
   }

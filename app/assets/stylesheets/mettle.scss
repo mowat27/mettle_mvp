@@ -34,20 +34,32 @@
   color: white; }
 
 .summary {
-  background: black;
-  color: white; }
-  .summary a.total {
-    color: white; }
+  background : black;
+  color      : white;
+  border     : 5px solid #CCC;
+  padding    : 1em;
 
-.results table {
-  background: black; }
-.results th {
-  color: white;
-  text-align: left;
-  padding-right: 5px; }
-.results td {
-  padding-right: 5px; }
+  a.total{
+    color: white;
+  }
+}
 
+.results table{
+  background : black;
+  padding    : 1em;
+  border     : 5px solid #CCC;
 
-.results td.failed {
-  border: 1px solid red; }
+  th{
+    color         : white;
+    text-align    : left;
+    padding-right : 5px;
+  }
+
+  td{
+    padding-right: 5px;
+
+    &.failed{
+      border: 1px solid red;
+    }
+  }
+}
