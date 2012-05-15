@@ -1,5 +1,7 @@
 src_files:
   - "lib/assets/javascripts/jquery-1.7.2.js"
+  - "lib/assets/javascripts/jquery.csv-0.6.js"
+  - "lib/assets/javascripts/jquery.json-2.3.js"
   - "lib/assets/javascripts/jshashtable-2.1_src.js"
   - "lib/assets/javascripts/underscore.js"
   - "public/javascripts/compiled/**/*.js"

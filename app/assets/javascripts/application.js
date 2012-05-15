@@ -6,6 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.csv-0.6
+//= require jquery.json-2.3
 //= require jshashtable-2.1_src
 //= require underscore
 //= require_tree .

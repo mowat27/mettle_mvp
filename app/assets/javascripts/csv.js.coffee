@@ -2,8 +2,10 @@ root = global ? window
 
 class root.CsvReader
   constructor: (csv_data) ->
+    @raw_csv     = csv_data
+    @new_array   = $.csv2Array(csv_data)
     @csv_data    = csv_data.split("\n")
-    @header_row  = new HeaderRow(@csv_data[0].split(","))
+    @header_row  = new HeaderRow(@new_array[0])
     @rows        = (new Row(raw_row) for raw_row in @csv_data[1..-1])
 
   is_valid_csv_file: ->
@@ -12,7 +14,6 @@ class root.CsvReader
     true
 
   to_json: ->
-    row_data = @row_data()
     """
     {
       \"column_names\" : #{@header_row.to_json_array()},
@@ -31,10 +32,7 @@ class HeaderRow
     @column_names = column_names
 
   json_array = (values) ->
-    result = "["
-    for value in values
-      result += "#{value},"
-    result.replace(/,$/, '') + "]"
+    $.toJSON(values)
 
   to_json_array: ->
     json_array(@column_names)
@@ -58,7 +56,7 @@ class Row
     values = @values
     header_row.each_indexed_column_name (column_name, column_index) ->
       value = values[column_index] ? '""'
-      result += "#{column_name} : #{value},"
+      result += "#{$.toJSON(column_name)} : #{value},"
     result.replace(/,$/, '') + "}"
 
 if exports?
