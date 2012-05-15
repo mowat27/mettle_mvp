@@ -64,9 +64,11 @@ a {
 
 
 #header {
-  height: 5em;
-  padding: 0.5em;
-  color: white;
+  height  : 5em;
+  color   : white;
+  padding : 0.5em 1em;
+  width   : 97%;
+  margin  : auto;
 
   h1 {
     font-size: 2em;
@@ -83,7 +85,22 @@ a {
   float: right;
   li {
     display: inline;
-    margin: 0.5em;
+    margin-left: 0.5em;
+
+    a{
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.2em 0.5em;
+
+      &:hover{
+        text-decoration: underline;
+      }
+
+      &.current{
+
+        background-color: darken(#376BA5, 8);
+      }
+    }
   }
 }
 
