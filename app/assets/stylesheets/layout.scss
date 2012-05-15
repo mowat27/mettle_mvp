@@ -58,9 +58,7 @@ body {
   background: #ABC;
 }
 
-a {
-  color: white;
-}
+a { color: #376BA5; }
 
 h3{
   font-size: 1.2em;
@@ -81,6 +79,10 @@ ol, ul{
 
   h1 {
     font-size: 2em;
+  }
+
+  a {
+    color: white;
   }
 }
 
@@ -121,7 +123,5 @@ ol, ul{
   border     : 5px solid darken(#fff, 5);
 
   h2 { font-size: 1.5em; }
-
-  a { color: #376BA5; }
 }
 
