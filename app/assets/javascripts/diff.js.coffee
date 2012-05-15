@@ -167,7 +167,12 @@ class root.Diff.DataSet
 
 class root.Diff.Row
   constructor: (values) ->
-    @values = values
+    @values = []
+    for value in values
+      if typeof value isnt 'undefined'
+        @values.push(value)
+      else
+        @values.push("")
 
   get: (column_names, name) ->
     i = column_names.indexOf(name)

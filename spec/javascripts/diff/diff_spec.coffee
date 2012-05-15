@@ -350,6 +350,10 @@ describe "root.Diff", ->
       @column_names = ["a","b","c","d","e"]
       @row = new root.Diff.Row(["v0","v1","v2","v3","v4"])
 
+    it "converts undefined to an empty string", ->
+      row = new root.Diff.Row(["v0",undefined])
+      expect(row.values).toEqual(["v0",""])
+
     describe "#equals", ->
       it "is true when both rows contain the same values", ->
         other = new root.Diff.Row(["v0","v1","v2","v3","v4"])

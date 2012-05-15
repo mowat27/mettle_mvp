@@ -1,3 +1,4 @@
+
 root = global ? window
 
 $ ->
