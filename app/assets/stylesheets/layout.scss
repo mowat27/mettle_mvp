@@ -55,18 +55,29 @@ You also need to include this conditional style in the <head> of your HTML file 
 }
 
 body {
-  background: #376BA5;
+  background: #ABC;
 }
 
 a {
   color: white;
 }
 
+h3{
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+
+ol, ul{
+  margin-left: 2em;
+}
 
 #header {
-  height: 5em;
-  padding: 0.5em;
-  color: white;
+  height  : 5em;
+  color   : white;
+  padding : 0.5em 1em;
+  width   : 97%;
+  margin  : auto;
 
   h1 {
     font-size: 2em;
@@ -83,7 +94,22 @@ a {
   float: right;
   li {
     display: inline;
-    margin: 0.5em;
+    margin-left: 0.5em;
+
+    a{
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.2em 0.5em;
+
+      &:hover{
+        text-decoration: underline;
+      }
+
+      &.current{
+
+        background-color: darken(#ABC, 8);
+      }
+    }
   }
 }
 
@@ -99,16 +125,3 @@ a {
   a { color: #376BA5; }
 }
 
-#signup_form {
-  display: inline-block;
-  /*border: 2px solid brown;*/
-  width: 25%;
-  height: 100%;
-  vertical-align: top;
-  /*background: orange;*/
-}
-
-#feedback_form {
-	width: 65%;
-  height: 100%;
-}
