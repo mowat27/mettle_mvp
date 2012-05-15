@@ -48,7 +48,7 @@ run_page = ->
   $("#actual_csv_input").change (evt) ->
     comparison.load_results("actual", evt.target.files)
     mark_step_completed(load_actual_step)
-    compare_files_step().removeClass("disabled")
+    compare_files_step().removeClass("disabled").addClass("current")
 
   $("#compare-button").click (evt) ->
     comparison.compare()
