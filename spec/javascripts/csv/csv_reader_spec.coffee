@@ -26,7 +26,7 @@ describe "CsvReader#to_json", ->
     expected = '''
 {
   "column_names" : ["a","b","c"],
-  "row_data" : [{"a" : "1","b" : "2","c" : "3"}]
+  "row_data" : [{"a":"1","b":"2","c":"3"}]
 }
 '''
     csv_reader = new root.CsvReader(@data)
