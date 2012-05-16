@@ -33,6 +33,9 @@ run_page = ->
   compare_files_step = ->
     $(".step:eq(2)")
 
+  func = (message) ->
+    alert "hello #{message}"
+
 
   start_step = (step) ->
     step().addClass("current")
@@ -99,4 +102,7 @@ run_page = ->
     $("#results_table_test").empty().append(test_table.to_jquery())
     compare_files_step().removeClass("current").addClass("complete")
     switch_to_results()
+
+  $("#nav").find("a").each ->
+    $(this).addClass("current") if $(this).attr("href") == window.location.pathname
 
