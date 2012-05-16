@@ -14,16 +14,16 @@
       <h1>Mettle - regression testing for big data sets</h1>
     </div>
 
-    <% if params[:error_message] %>
-      <div id='errors'><%= params[:error_message] %></div>
-    <% end %>
-
     <ul id="nav" class="linkbar">
       <li> <%= link_to "Try Mettle in your browser", "/", :class => "current" %> </li>
       <li> <%= link_to "About Mettle", "/about" %> </li>
       <li> <%= link_to "Sign Up", "/customers/new" %> </li>
       <li> <%= link_to "Leave Feedback", "/feedbacks/new"%> </li>
     </ul>
+
+    <% if params[:error_message] %>
+      <div id='errors'><%= params[:error_message] %></div>
+    <% end %>
   </div>
 
   <div id='wrap'>
