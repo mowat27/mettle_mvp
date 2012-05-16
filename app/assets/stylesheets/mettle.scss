@@ -3,10 +3,10 @@
 }
 
 .passed {
-  color: #25ff2a; }
+  color: #A1CE52; }
 
 .failed {
-  color: #ff1400; }
+  color: #CE5263; }
 
 #failed-columns-only {
   color: white; }
@@ -16,19 +16,6 @@
   color: white; }
   #summary a.total {
     color: white; }
-
-#results {
-  padding: 20px;
-
-  table {
-    background: black;
-  }
-
-  td.failed {
-    border: 1px solid red;
-  }
-}
-
 
 .failed-columns-only {
   color: white; }
@@ -45,21 +32,28 @@
 }
 
 .results table{
-  background : black;
-  padding    : 1em;
-  border     : 5px solid #CCC;
+  background      : #222;
+  padding         : 1em;
+  border          : 5px solid #CCC;
+  border-collapse : collapse;
 
   th{
     color         : white;
     text-align    : left;
-    padding-right : 5px;
+    border-left   : 1px solid #2A2A2A;
+    border-bottom : 1px solid #666;
+    padding       : 1em 1em 0.5em 1em;
+    font-size     : 1em;
   }
 
   td{
-    padding-right: 5px;
+    border-top  : 1px solid #444;
+    border-left : 1px solid #2A2A2A;
+    padding     : 0.2em 1em;
+  }
 
-    &.failed{
-      border: 1px solid red;
-    }
+  tr:last-child td{
+    padding-bottom : 1em;
   }
 }
+
