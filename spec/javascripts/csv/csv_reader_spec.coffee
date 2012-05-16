@@ -64,3 +64,19 @@ describe "CsvReader#to_json", ->
     csv_reader = new root.CsvReader(@data)
     expect(csv_reader.to_json()).toEqual(expected)
 
+  it "ignores extra data columns with no header", ->
+    @data = '''
+"a",b,"c"
+"1",2,"3",4,
+"4","5","6",5,6
+'''
+
+    expected = '''
+{
+  "column_names" : ["a","b","c"],
+  "row_data" : [{"a":"1","b":"2","c":"3"},{"a":"4","b":"5","c":"6"}]
+}
+'''
+    csv_reader = new root.CsvReader(@data)
+    expect(csv_reader.to_json()).toEqual(expected)
+
