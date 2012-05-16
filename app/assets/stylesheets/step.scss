@@ -40,4 +40,10 @@ $step_bg : #F5F5F5;
     header { color: #222; }
   }
 
+  &.error{
+    background-color : #CE5263;
+    border-color     : darken(#CE5263, 8);
+
+    header { color: #222; }
+  }
 }

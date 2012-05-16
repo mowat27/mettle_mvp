@@ -46,26 +46,33 @@ class root.Diff.Comparison
       data_set: new root.Diff.DataSet []
     @json = '{"column_names": [], "results": []}'
 
-  load_csv_file = (file_list, on_completion) ->
+  load_csv_file = (file_list, on_error, on_completion) ->
     self = this
     for file in file_list
       continue unless file.type == "text/csv"
       reader = new FileReader
 
       reader.onloadend = (evt) ->
-        csv_reader = new root.CsvReader(evt.target.result)
-        if csv_reader.is_valid_csv_file()
+        try
+          csv_reader = new root.CsvReader(evt.target.result)
           json = "#{csv_reader.to_json()}\n"
           on_completion.apply(self, [json])
-        else
-          window.location = "/about?error_message=Error: The csv file \"#{file.fileName}\" contained a formatting error and could not be read"
+        catch e
+          on_error(e)
 
       reader.readAsText(file)
 
-  load_results: (type, file_list) ->
+
+  load_results: (type, file_list, callbacks) ->
     target = @expected if type == "expected"
     target = @actual if type == "actual"
-    load_csv_file file_list, (json) ->
+
+    callbacks = callbacks ? {on_error: -> null}
+
+    callbacks.on_start() if callbacks.on_start?
+
+    load_csv_file file_list, callbacks.on_error, (json) ->
+      callbacks.on_success() if callbacks.on_success?
       src = JSON.parse(json)
       target.column_names = src.column_names
       target.data_set = root.Diff.DataSet.create_from_json(json)
