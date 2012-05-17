@@ -38,6 +38,16 @@ ol, ul{
     color: white;
   }
 
+  #notice{
+    border            : 1px solid darken(#A1CE52, 5);
+    background-color  : #A1CE52;
+    padding           : 0.2em 0.5em;
+    text-align        : center;
+    clear             : both;
+    width             : 50%;
+    margin            : auto;
+  }
+
   #errors{
     border            : 1px solid darken(#DDA285, 5);
     background-color  : #DDA285;
