@@ -25,6 +25,11 @@ $step_bg : #F5F5F5;
   &.one  { background-image: url('/assets/step_1_bg.png') }
   &.two  { background-image: url('/assets/step_2_bg.png') }
   &.three{ background-image: url('/assets/step_3_bg.png') }
+  &.four{ background-image: url('/assets/step_4_bg.png') }
+
+  .pk_checkbox {
+    margin-left: 0.5em;
+  }
 
   &.complete{
     background-color : #DCD9CA;

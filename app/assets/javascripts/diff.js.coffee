@@ -74,11 +74,11 @@ class root.Diff.Comparison
 
     callbacks.on_start() if callbacks.on_start?
 
-    load_csv_file file_list, callbacks.on_error, (json) ->
-      callbacks.on_success() if callbacks.on_success?
+    load_csv_file file_list, callbacks.on_error, (json) ->      
       src = JSON.parse(json)
       target.column_names = src.column_names
       target.data_set = root.Diff.DataSet.create_from_json(json)
+      callbacks.on_success() if callbacks.on_success?
 
   zip = (lhs, rhs, func) ->
     for i, lhs_item of lhs

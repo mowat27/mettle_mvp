@@ -30,12 +30,22 @@ run_page = ->
   load_actual_step = ->
     $(".step:eq(1)")
 
+  choose_pk_step = ->
+    $(".step:eq(2)")  
+
   compare_files_step = ->
-    $(".step:eq(2)")
+    $(".step:eq(3)")
 
   func = (message) ->
     alert "hello #{message}"
 
+  create_primary_key_checkboxes = (column_names) ->
+    for column_name in column_names
+      checkbox_html = "<input type='checkbox' id='cb#{column_name}' value='#{column_name}' class='pk_checkbox' /> <label for='cb#{column_name}'>#{column_name}</label>"
+      choose_pk_step().append( $(checkbox_html) )
+      $('.pk_checkbox').click ->
+        choose_pk_step().removeClass("current").addClass("complete")
+        start_step compare_files_step
 
   start_step = (step) ->
     step().addClass("current")
@@ -61,6 +71,7 @@ run_page = ->
   <p class='error-details' style="display: inline;">#{error.name}: #{error.message}</p>
 </span>
 """
+
     error = $(error_html)
     error.find(".error-details").hide()
     error.find("a").click (evt) ->
@@ -91,7 +102,8 @@ run_page = ->
         mark_step_in_progress load_actual_step
       on_success: ->
         mark_step_completed load_actual_step
-        start_step compare_files_step
+        create_primary_key_checkboxes comparison.column_names()
+        start_step choose_pk_step        
       on_error: (error) ->
         mark_step_failed load_actual_step, error
 
