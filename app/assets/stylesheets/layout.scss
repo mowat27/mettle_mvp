@@ -105,6 +105,12 @@ ol, ul{
     text-align : center;
     border     : 5px solid darken(#fff, 5);
   }
+
+  #browser-support-table {
+    th, td{
+      padding-right: 0.5em;
+    }
+  }
 }
 
 #intro {
