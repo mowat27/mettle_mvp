@@ -38,6 +38,10 @@ run_page = ->
     step().addClass("current")
     step().find("input").attr("disabled", false)
 
+  disable_step = (step) ->
+    step().addClass("disabled").find("input").attr("disabled", true)
+
+
   mark_step_in_progress = (step) ->
     step().find(".loading-file").show()
 
@@ -47,15 +51,25 @@ run_page = ->
     step().find(".file-load-ok").show()
     step().find("input").attr("disabled", true)
 
-  mark_step_failed = (step) ->
+  mark_step_failed = (step, error) ->
+    error_html = """
+<span>
+  ERROR: Could not read file - was it properly formed? <a href=#>show details</a>
+  <p class='error-details' style="display: inline;">#{error.name}: #{error.message}</p>
+</span>
+"""
+    error = $(error_html)
+    error.find(".error-details").hide()
+    error.find("a").click (evt) ->
+      error.find(".error-details").toggle()
+
     step().find(".loading-file").hide()
-    step().find(".file-load-failed").text(error.message).show()
+    step().find(".file-load-failed").replaceWith(error).show()
     step().removeClass("current").addClass("error")
 
-  load_actual_step().find("input").attr("disabled", true)
-  compare_files_step().addClass("disabled").find("input").attr("disabled", true)
-
   switch_to_load_files()
+  disable_step compare_files_step
+  disable_step load_actual_step
   start_step load_expected_step
 
   $("#expected_csv_input").change (evt) ->
@@ -66,8 +80,7 @@ run_page = ->
         mark_step_completed load_expected_step
         start_step load_actual_step
       on_error: (error) ->
-        mark_step_failed load_expected_step
-
+        mark_step_failed load_expected_step, error
 
   $("#actual_csv_input").change (evt) ->
     comparison.load_results "actual", evt.target.files,
@@ -77,7 +90,7 @@ run_page = ->
         mark_step_completed load_actual_step
         start_step compare_files_step
       on_error: (error) ->
-        mark_step_failed load_actual_step
+        mark_step_failed load_actual_step, error
 
   $("#compare-button").click (evt) ->
     comparison.compare()
@@ -86,7 +99,4 @@ run_page = ->
     $("#results_table_test").empty().append(test_table.to_jquery())
     compare_files_step().removeClass("current").addClass("complete")
     switch_to_results()
-
-  $("#load_files_link").click switch_to_load_files
-  $("#show_results_link").click switch_to_results
 

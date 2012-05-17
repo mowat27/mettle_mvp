@@ -60,6 +60,6 @@ MettleMvp::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
 
   match '/about' => 'about#new'
-  # match '/:id' => 'pages#show', :as => :static, :via => :get
+  match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
 end
