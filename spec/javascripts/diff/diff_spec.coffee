@@ -146,6 +146,32 @@ describe "root.Diff", ->
         col2: {expected: "b", actual: "b"}
         col3: {expected: "c", actual: "c"}
 
+    describe "column_names", ->
+      it "supplies all column_names", ->
+        @comparison = new root.Diff.Comparison([])
+        @comparison.expected.column_names = @column_names
+        @comparison.actual.column_names = @column_names 
+        expect(@comparison.column_names()).toEqual(@column_names)
+
+      it "ignores column_names that are in expected but not in actual", ->
+        @comparison = new root.Diff.Comparison([])
+        @comparison.expected.column_names = ['extra', 'match']
+        @comparison.actual.column_names = ['match'] 
+        expect(@comparison.column_names()).toEqual( ['match'] )
+
+      it "ignores column_names that are in actual but not in expected", ->
+        @comparison = new root.Diff.Comparison([])
+        @comparison.expected.column_names = ['match']
+        @comparison.actual.column_names = ['extra', 'match'] 
+        expect(@comparison.column_names()).toEqual( ['match'] )
+
+      it "ignores duplicates", ->
+        @comparison = new root.Diff.Comparison([])
+        @comparison.expected.column_names = ['duplicate']
+        @comparison.actual.column_names = ['duplicate', 'duplicate'] 
+        expect(@comparison.column_names()).toEqual( ['duplicate'] )
+
+
 
     describe "with identical data sets", ->
       beforeEach ->

@@ -46,6 +46,9 @@ class root.Diff.Comparison
       data_set: new root.Diff.DataSet []
     @json = '{"column_names": [], "results": []}'
 
+  column_names: ->  
+    @array_intersection( @expected.column_names, @actual.column_names )
+
   load_csv_file = (file_list, on_error, on_completion) ->
     self = this
     for file in file_list
@@ -111,6 +114,24 @@ class root.Diff.Comparison
 
   to_json: ->
     @json
+
+  array_intersection: (first_list, second_list) ->
+    result = []
+    
+    for first_item in first_list
+      for second_item in second_list
+        if first_item == second_item
+          result.push first_item 
+    
+    @set(result)
+
+  set: (list) ->
+    result = []
+    for item in list
+      if result.indexOf item
+        result.push item
+        
+    result
 
 
 class root.Diff.DataSet
