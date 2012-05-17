@@ -96,6 +96,15 @@ ol, ul{
   border     : 5px solid darken(#fff, 5);
 
   h2 { font-size: 1.5em; }
+
+  .ask-for-feedback {
+    padding    : 0.1em;
+    width      : 50%;
+    margin     : auto;
+    margin-top : 1em;
+    text-align : center;
+    border     : 5px solid darken(#fff, 5);
+  }
 }
 
 #footer{
