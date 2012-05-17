@@ -32,7 +32,8 @@ describe FeedbacksController do
         it "adds a flash notice" do
           invalid_attributes = {}
           post :create, :feedback => invalid_attributes
-          flash[:alert].should == "There was a problem with your feedback."
+          flash[:alert].should match(/There was a problem with your feedback/)
+          flash[:alert].should match(/description cannot be empty/)
         end
         it "redirects to new" do
           invalid_attributes = {}
