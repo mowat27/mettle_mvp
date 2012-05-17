@@ -1,9 +1,16 @@
-
 root = global ? window
 
+on_try_it_page = ->
+  $("#upload_files").length != 0
+
+browser_not_supported = ->
+  browser = BrowserDetect.browser
+  false
+
 $ ->
-  if !file_api_supported()
-    alert "Sorry - the File API is not supported so this page doesn't work"
+  if on_try_it_page() && (browser_not_supported() || !file_api_supported())
+    $("#header").append("<div id='errors'>Sorry, your browser is not supported. <a href=/browser>Find out more here<a>.</div>")
+    $("#upload_files").find("input").attr("disabled", true)
   else
     run_page()
 
@@ -31,7 +38,7 @@ run_page = ->
     $(".step:eq(1)")
 
   choose_pk_step = ->
-    $(".step:eq(2)")  
+    $(".step:eq(2)")
 
   compare_files_step = ->
     $(".step:eq(3)")
@@ -107,7 +114,7 @@ run_page = ->
       on_success: ->
         mark_step_completed load_actual_step
         create_primary_key_checkboxes comparison.column_names()
-        start_step choose_pk_step        
+        start_step choose_pk_step
       on_error: (error) ->
         mark_step_failed load_actual_step, error
 
