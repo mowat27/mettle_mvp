@@ -10,7 +10,7 @@ $ ->
 file_api_supported = ->
   window.File && window.FileReader && window.FileList && window.Blob
 
-comparison = new root.Diff.Comparison(["freebase_id"])
+comparison = new root.Diff.Comparison(["banana"])
 
 initialize = ->
   $("#results_table_test").hide()
@@ -36,9 +36,6 @@ run_page = ->
   compare_files_step = ->
     $(".step:eq(3)")
 
-  func = (message) ->
-    alert "hello #{message}"
-
   create_primary_key_checkboxes = (column_names) ->
     for column_name in column_names
       checkbox_html = "<input type='checkbox' id='cb#{column_name}' value='#{column_name}' class='pk_checkbox' /> <label for='cb#{column_name}'>#{column_name}</label>"
@@ -46,6 +43,13 @@ run_page = ->
       $('.pk_checkbox').click ->
         choose_pk_step().removeClass("current").addClass("complete")
         start_step compare_files_step
+
+  selected_primary_keys = ->
+    result = []
+    for checkbox in $('.pk_checkbox:checked')
+      result.push checkbox.value
+
+    result
 
   start_step = (step) ->
     step().addClass("current")
@@ -108,6 +112,7 @@ run_page = ->
         mark_step_failed load_actual_step, error
 
   $("#compare-button").click (evt) ->
+    comparison.key = selected_primary_keys()
     comparison.compare()
     results = root.run_tests(JSON.parse(comparison.to_json()))
     test_table = new root.ResultsTable("test", results)
