@@ -98,6 +98,12 @@ ol, ul{
   h2 { font-size: 1.5em; }
 }
 
+#intro {
+  #examples {
+    float: right;
+  }
+}
+
 #footer{
   font-size : 0.8em;
   padding   : 1em;
