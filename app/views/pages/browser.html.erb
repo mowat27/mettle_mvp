@@ -1,0 +1,46 @@
+<h2>Supported Browers</h2>
+
+<p>Mettle allows you to compare 2 CSV files in your browser so you can work with confidential data you cannot send outside your company.</p>
+<br/>
+<p>However, we need to use a feature of modern browsers called the HTML5 File API to do it.  The File API lets you to load files from your hard drive directly into the JavaScript program that compares the files rather then sending the data to our servers for processing.  However, the File API is a new technology and some browers do not support it.</p>
+<br/>
+<p>The following browers have been tested.</p>
+<br/>
+<table id="browser-support-table">
+  <tr>
+    <th>Browser</th>
+    <th>Tested Version</th>
+    <th>Supported</th>
+  </tr>
+  <tr>
+    <td>Google Chrome</td>
+    <td>19.0</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>Firefox</td>
+    <td>13</td>
+    <td>No (known issue with CSV parsing - we are working on a fix)</td>
+  </tr>
+  <tr>
+    <td>IE</td>
+    <td>9</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>Safari</td>
+    <td>5.1</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>Opera</td>
+    <td>11</td>
+    <td>Yes</td>
+  </tr>
+</table>
+<br/>
+<p>The main problem with Safari and IE is that the FileReader API has not been implemented.  You can find out more information on browser support for the FileReader API <a href="http://caniuse.com/filereader">here</a>.</p>
+<br/>
+
+
+
