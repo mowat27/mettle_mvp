@@ -51,7 +51,7 @@ MettleMvp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'homepage#index'
+  root :to => 'try#index'
 
   # See how all your routes lay out with "rake routes"
 
@@ -59,6 +59,7 @@ MettleMvp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
+  match '/try' => 'try#index'
   match '/about' => 'about#new'
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
