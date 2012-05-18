@@ -32,6 +32,10 @@ ol, ul{
 
   h1 {
     font-size: 2em;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   a {
@@ -114,6 +118,11 @@ ol, ul{
     th, td{
       padding-right: 0.5em;
     }
+  }
+}
+
+#instructions {
+  img {
   }
 }
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mettle</title>
+  <title>Mettle | Big Data Testing</title>
   <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Podkova' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application" %>
@@ -11,15 +11,15 @@
 <body>
   <div id='header'>
     <div id='logo'>
-      <h1>Mettle - regression testing for big data sets</h1>
+      <h1><%=link_to "Mettle - Big Data Testing", "/" %></h1>
     </div>
 
     <ul id="nav" class="linkbar">
       <li> <%= link_to "Home", "/" %> </li>
-      <li> <%= link_to "About Mettle", "/about" %> </li>
-      <li> <%= link_to "Try Mettle", "/try" %> </li>
-      <li> <%= link_to "Sign Up", "/customers/new" %> </li>
-      <li> <%= link_to "Leave Feedback", "/feedbacks/new"%> </li>
+      <li> <%= link_to "Compare CSV Files", "/try" %> </li>
+      <li> <%= link_to "Give Feedback", "/feedbacks/new"%> </li>
+      <li> <%= link_to "Subscribe", "/customers/new" %> </li>
+      <li> <%= link_to "About", "/about" %> </li>
     </ul>
 
     <% if flash[:notice] %>
