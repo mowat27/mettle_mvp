@@ -59,6 +59,7 @@ MettleMvp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
+  match '/try' => 'try#index'
   match '/about' => 'about#new'
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
 
