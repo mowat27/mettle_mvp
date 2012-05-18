@@ -1,13 +1,10 @@
 <div id="intro">
   <h2>Compare CSV Files</h2>
-
-  <p>We want to show you Mettle by making it possible for you to use it in your browser (that's right, none of your data will be sent to our servers).  Select 2 CSV files and press "compare" to try it!<p>
-
   <span>
     <span><%= link_to "Restart", root_path %></span>
 
     <span id="examples">
-      Example files:
+      Download example files:
       <%= link_to "expected.csv", '/expected.csv' %>
       <%= link_to "actual.csv", '/actual.csv' %>
     </span>
@@ -36,7 +33,7 @@
 
   <div class="step three">
     <header>Step 3: Choose Primary Key</header>
-    You can choose multiple PKs.
+    You can choose more than one field
   </div>
 
   <div class="step four">

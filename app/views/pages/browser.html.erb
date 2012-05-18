@@ -1,46 +1,49 @@
 <h2>Supported Browers</h2>
 
-<p>Mettle allows you to compare 2 CSV files in your browser so you can work with confidential data you cannot send outside your company.</p>
-<br/>
-<p>However, we need to use a feature of modern browsers called the HTML5 File API to do it.  The File API lets you to load files from your hard drive directly into the JavaScript program that compares the files rather then sending the data to our servers for processing.  However, the File API is a new technology and some browers do not support it.</p>
-<br/>
-<p>The following browers have been tested.</p>
-<br/>
-<table id="browser-support-table">
-  <tr>
-    <th>Browser</th>
-    <th>Tested Version</th>
-    <th>Supported</th>
-  </tr>
-  <tr>
-    <td>Google Chrome</td>
-    <td>19.0</td>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <td>Firefox</td>
-    <td>13</td>
-    <td>No (known issue with CSV parsing - we are working on a fix)</td>
-  </tr>
-  <tr>
-    <td>IE</td>
-    <td>9</td>
-    <td>No</td>
-  </tr>
-  <tr>
-    <td>Safari</td>
-    <td>5.1</td>
-    <td>No</td>
-  </tr>
-  <tr>
-    <td>Opera</td>
-    <td>11</td>
-    <td>Yes</td>
-  </tr>
-</table>
-<br/>
-<p>The main problem with Safari and IE is that the FileReader API has not been implemented.  You can find out more information on browser support for the FileReader API <a href="http://caniuse.com/filereader">here</a>.</p>
-<br/>
+<p>Mettle allows you to <a href='/'>compare 2 CSV files</a> using only your browser so you can work with confidential data you cannot send outside your company.  We thing this is a good thing because it helps you do your job better without needing to worry about sending data over the internet or dealing with any paperwork.</p>
+
+<p>Unfortunately, there is a downside that we had to use evolving technologies that only work in some browsers.  Hopefully, this does not cause you too much of a problem but we thought it would be helpful to let you know which browers <i>do</i> work.</p>
+
+<p>
+  <table id="browser-support-table">
+    <tr>
+      <th>Browser</th>
+      <th>Tested Version</th>
+      <th>Supported</th>
+    </tr>
+    <tr>
+      <td>Google Chrome</td>
+      <td>19.0</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Firefox</td>
+      <td>12</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Internet Explorer</td>
+      <td>9</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Safari</td>
+      <td>5.1</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Opera</td>
+      <td>11</td>
+      <td>Yes</td>
+    </tr>
+  </table>
+</p>
+
+<p>Notably, Internet Explorer and Safari are not supported yet, but we are working on a solution.  Please <a href='/feedbacks/new'>let us know</a> if this is important to you so we can push it up our priority list.</p>
+
+<h3>Technical Details</h3>
+<p>We do not support Safari and IE because they have not implemented the HTML5 FileReader API yet.  You can find out more information on browser support for the FileReader API at <a href="http://caniuse.com/filereader">caniuse.com</a>.</p>
+
 
 
 
