@@ -1,0 +1,40 @@
+$step_bg : #DCD9CA;
+
+.info {
+  margin              : 0.5em 0em;
+  position            : relative;
+  padding             : 0.5em;
+  height              : auto;
+  border              : 5px solid darken($step_bg, 8);
+  padding-left        : 100px;
+  background-color    : $step_bg;
+  background-repeat   : no-repeat;
+  background-position : left center;
+
+  input{
+    padding   : 0.2em;
+    font-size : 1em;
+  }
+
+  header {
+    color     : #222;
+    display   : inline;
+    font-size : 1.5em;
+    vertical-align: top;
+  }
+
+  &.one   { background-image: url('/assets/step_1_bg.png') }
+  &.two   { background-image: url('/assets/step_2_bg.png') }
+  &.three { background-image: url('/assets/step_3_bg.png') }
+  &.four  { background-image: url('/assets/step_4_bg.png') }
+
+  .screenshot {
+    border: 3px solid white;
+    align: right;
+  }
+
+  .right {
+    display: inline;
+    align: right;
+  }
+}

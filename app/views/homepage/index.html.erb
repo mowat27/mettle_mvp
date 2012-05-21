@@ -2,23 +2,29 @@
 
 <p>Mettle makes it really easy for you to compare big data sets so you can test you database and ETL processes quickly and accurately.</p>
 
-<p>We want you to get started with Mettle straight away so we have created an application that lets you <a href='/try'>compare 2 CSV files</a> using only your browser so you can work with confidential data you would not send outside your company.  We thing this is a good thing because it helps you do your job better without needing to worry about sending data over the internet or dealing with any messy paperwork.</p>
+<p>We have made it really easy to get started straight away and you can <a href='/try'>compare 2 CSV files</a> using only your browser.  We think this is a good thing because you can work with confidential data without needing to worry about sending out of your compant over the internet or dealing with any messy paperwork.</p>
 
-<p>Getting started could not be easier.  Just <a href='/try'>click here to get started</a> and follow 4 simple steps to run your first test.<p>
+<p>Getting started could not be easier.  Just <a href='/try'>click here</a> and follow 4 simple steps to run your first test.<p>
 
-<iframe src="http://player.vimeo.com/video/42406508" width="500" height="244" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	
+<!-- <iframe src="http://player.vimeo.com/video/42406508" width="500" height="244" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	 -->
 
 <div id="instructions">
-  <header>Select your files</header>
-  <span><%= image_tag "mettle_choose_files.png" %></span>
-  <header>Choose a primary key</header>
-  <span><%= image_tag "mettle_choose_keys.png" %></span>
-  <header>Press 'Compare Files'</header>
-  <span><%= image_tag "mettle_compare_files.png" %></span>
-  <header>See the results</header>
-  <span><%= image_tag "mettle_view_results.png" %></span>
+  <div class='info one'>
+    <header>Select your files</header>
+    <div class="right">
+      <%= image_tag "mettle_choose_files.png", :class => 'screenshot' %>
+    </div>
+  </div>
+  <div class='info two'>
+    <header>Choose a primary key</header>
+    <%= image_tag "mettle_choose_keys.png", :class => 'screenshot' %>
+  </div>
+  <div class='info three'>
+    <header>Press 'Compare Files'</header>
+    <%= image_tag "mettle_compare_files.png", :class => 'screenshot' %>
+  </div>
+  <div class='info four'>
+    <header>See the results</header>
+    <%= image_tag "mettle_view_results.png", :class => 'screenshot' %>
+  </div>
 </div>
-
-<p>All you need to do is provide the data you expect and the actual results of the test in csv format.</p>
-
-<p>To get straight into the action click <a href="/try">Try Mettle</a> or watch the introductory video below.</p>

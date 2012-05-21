@@ -30,18 +30,18 @@ switch_to_load_files = ->
   $("#upload_files").show("medium");
   $("#results_table_test").hide("medium")
 
-run_page = ->
+run_csv_comparison_page = ->
   load_expected_step = ->
-    $(".step:eq(0)")
+    $(".step").filter(".one")
 
   load_actual_step = ->
-    $(".step:eq(1)")
+    $(".step").filter(".two")
 
   choose_pk_step = ->
-    $(".step:eq(2)")
+    $(".step").filter(".three")
 
   compare_files_step = ->
-    $(".step:eq(3)")
+    $(".step").filter(".four")
 
   create_primary_key_checkboxes = (column_names) ->
     for column_name in column_names
@@ -127,6 +127,11 @@ run_page = ->
     compare_files_step().removeClass("current").addClass("complete")
     switch_to_results()
 
+
+run_page = ->
   $("#nav").find("a").each ->
     $(this).addClass("current") if $(this).attr("href") == window.location.pathname
+
+  if window.location.pathname == "/try"
+    run_csv_comparison_page()
 
