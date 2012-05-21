@@ -1,0 +1,67 @@
+.intro{
+  .screencast{
+    float       : right;
+    margin-left : 20px;
+    color       : #ccc;
+    text-align: right;
+  }
+
+  &:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+#instructions{
+  border-top  : 5px solid #efefef;
+  padding-top : 15px;
+  margin-top  : 15px;
+
+  .top_instructions{
+    margin: auto;
+    max-width: 1150px;
+  }
+
+  .instruction {
+    height  : 225px;
+    width   : 322px;
+    padding : 15px;
+    margin  : 15px;
+    background-color: #F5F5F5;
+
+    &.one, &.two, &.three{
+      float: left;
+    }
+
+    &.four{
+      clear: both;
+      margin: auto;
+      width: auto;
+      max-width: 1088px;
+
+      img{ float: right }
+    }
+
+    img{
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    header{
+      font-size: 1.2em;
+    }
+  }
+
+  &:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+}

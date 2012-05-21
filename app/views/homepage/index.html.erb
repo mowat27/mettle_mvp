@@ -1,30 +1,58 @@
-<h2>Welcome</h2>
+<div class="intro">
+  <div class="screencast">
+    <iframe src="http://player.vimeo.com/video/42406508" width="500" height="244" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  </div>
 
-<p>Mettle makes it really easy for you to compare big data sets so you can test you database and ETL processes quickly and accurately.</p>
+  <p class="larger">
+    Mettle makes it really easy for you to compare big data sets so you can test you database and
+    ETL processes quickly, and accurately.
+  </p>
+  <br />
+  <p>
+    We have made it really easy to get started straight away and you can <a href='/try'>compare two
+    CSV files</a> using only your browser.  We think this is a good thing because you can work with
+    confidential data without needing to worry about sending out of your compant over the internet
+    or dealing with any messy paperwork.
+  </p>
 
-<p>We have made it really easy to get started straight away and you can <a href='/try'>compare 2 CSV files</a> using only your browser.  We think this is a good thing because you can work with confidential data without needing to worry about sending out of your compant over the internet or dealing with any messy paperwork.</p>
-
-<p>Getting started could not be easier.  Just <a href='/try'>click here</a> and follow 4 simple steps to run your first test.<p>
-
-<!-- <iframe src="http://player.vimeo.com/video/42406508" width="500" height="244" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>	 -->
+  <p>
+    Getting started could not be easier. Just <a href='/try'>click here</a> and follow four simple steps
+    to run your first test.
+  <p>
+</div>
 
 <div id="instructions">
-  <div class='info one'>
-    <header>Select your files</header>
-    <div class="right">
-      <%= image_tag "mettle_choose_files.png", :class => 'screenshot' %>
+  <h2>How it Works</h2>
+  <div class="top_instructions">
+    <div class='instruction one'>
+      <header>1. Select your files</header>
+      <p>
+        Simply select the two CSV files you want to compare.
+      </p>
+      <div class="right">
+        <%= image_tag "mettle_choose_files.png", :class => 'screenshot' %>
+      </div>
+    </div>
+    <div class='instruction two'>
+      <header>2. Choose a primary key</header>
+      <p>
+        Select which keys you want to compare the documents on.
+      </p>
+      <%= image_tag "mettle_choose_keys.png", :class => 'screenshot' %>
+    </div>
+    <div class='instruction three'>
+      <header>3. Compare Files</header>
+      <p>
+        Simply press the 'compare files' button to run a comparison.
+      </p>
+      <%= image_tag "mettle_compare_files.png", :class => 'screenshot' %>
     </div>
   </div>
-  <div class='info two'>
-    <header>Choose a primary key</header>
-    <%= image_tag "mettle_choose_keys.png", :class => 'screenshot' %>
-  </div>
-  <div class='info three'>
-    <header>Press 'Compare Files'</header>
-    <%= image_tag "mettle_compare_files.png", :class => 'screenshot' %>
-  </div>
-  <div class='info four'>
-    <header>See the results</header>
+  <div class='instruction four'>
     <%= image_tag "mettle_view_results.png", :class => 'screenshot' %>
+    <header>4. See the results</header>
+    <p>
+      Mismatches between the CSV files will be highlighted for review
+    </p>
   </div>
 </div>
