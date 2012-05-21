@@ -19,7 +19,7 @@ describe CustomersController do
 
       it "renders the homepage" do
         post :create, :customer => valid_attributes
-        response.should redirect_to(:root)
+        response.should redirect_to(try_path)
       end
 
       it "adds a flash notice" do

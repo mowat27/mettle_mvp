@@ -2,17 +2,25 @@
 
 <h3>What is Mettle?</h3>
 
-<p>Mettle is a regression testing framework for testing big data sets.</p>
+<p>Mettle is a tool for testing big data sets.</p>
+
+<h3>How do I use Mettle?</h3>
+
+<p>Instructions are shown on our <%= link_to "main page", "/" %></p>
+
 
 <h3>How do I structure my data for Mettle to use?</h3>
 
-<p>Mettle compares 2 CSV files formatted according the these rules
+<p>Normal CSV files work fine - although there are some constraints
 	<ul>
 	  <li> Fields in the files must be comma separated </li>
-	  <li> Each file must have its column names in the first row </li>
+    <li> Each file must have its column names in the first row </li>
+	  <li> Both files must have the same column names</li>
 	</ul>
+
+  Please <%= link_to "let us know", "/feedbacks/new" %> if you have problems loading your data.
 </p>
 
-<h3>Supported browers</h3>
+<h3>Which browsers can I use?</h3>
 
 <p>Mettle uses HTML5 features that are only available in fairly modern browsers.  More information is available <%= link_to "here", static_path('browser') %>.</p>

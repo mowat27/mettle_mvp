@@ -127,6 +127,23 @@ run_csv_comparison_page = ->
     compare_files_step().removeClass("current").addClass("complete")
     switch_to_results()
 
+run_feedback_page = ->
+  checkbox = $("#feedback_send_newsletter")
+  label = checkbox.parent()
+
+  checkbox.attr("disabled", true)
+  label.addClass("disabled")
+  $("#feedback_email_address").keyup (evt) ->
+    console.log("text: '#{$(this).val()}'")
+    if $(this).val() == ""
+      checkbox.attr("disabled", true).attr("checked", false)
+      label.addClass("disabled")
+    else
+      checkbox.attr("disabled", false)
+      label.removeClass("disabled")
+    true
+
+
 
 run_page = ->
   $("#nav").find("a").each ->
@@ -134,4 +151,7 @@ run_page = ->
 
   if window.location.pathname == "/try"
     run_csv_comparison_page()
+
+  if window.location.pathname == "/feedbacks/new"
+    run_feedback_page()
 

@@ -8,6 +8,10 @@
     width: 150px;
     text-align: right;
     margin: 2px 10px;
+
+    &.disabled {
+      color: gray;
+    }
   }
 
   textarea{
@@ -22,7 +26,10 @@ div.boolean, .simple_form input[type='submit'] {
 
 div.boolean label, label.collection_radio_buttons {
   float: none;
-  margin: 0;
+}
+
+#feedback_send_newsletter {
+  margin-right: 15px;
 }
 
 label.collection_radio_buttons {
