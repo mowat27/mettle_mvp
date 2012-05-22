@@ -97,35 +97,47 @@ run_csv_comparison_page = ->
   disable_step load_actual_step
   start_step load_expected_step
 
+  $("#examples").find("a").click (evt) ->
+    _gaq.push(['_trackEvent', 'Download Examples', $(this).text(), 'file_downloaded'])
+
   $("#expected_csv_input").change (evt) ->
     comparison.load_results "expected", evt.target.files,
       on_start: ->
         mark_step_in_progress load_expected_step
+        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'started'])
       on_success: ->
         mark_step_completed load_expected_step
         start_step load_actual_step
+        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'succeeded'])
       on_error: (error) ->
         mark_step_failed load_expected_step, error
+        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'failed'])
 
   $("#actual_csv_input").change (evt) ->
     comparison.load_results "actual", evt.target.files,
       on_start: ->
         mark_step_in_progress load_actual_step
+        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'started'])
       on_success: ->
         mark_step_completed load_actual_step
         create_primary_key_checkboxes comparison.column_names()
         start_step choose_pk_step
+        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'succeeded'])
       on_error: (error) ->
         mark_step_failed load_actual_step, error
+        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'failed'])
 
   $("#compare-button").click (evt) ->
+    _gaq.push(['_trackEvent', 'Compare CSV Files', 'compare', 'started'])
     comparison.key = selected_primary_keys()
     comparison.compare()
+    _gaq.push(['_trackEvent', 'Compare CSV Files', 'compare', 'comparison_completed'])
     results = root.run_tests(JSON.parse(comparison.to_json()))
     test_table = new root.ResultsTable("test", results)
     $("#results_table_test").empty().append(test_table.to_jquery())
     compare_files_step().removeClass("current").addClass("complete")
     switch_to_results()
+    _gaq.push(['_trackEvent', 'Compare CSV Files', 'compare', 'results_shown'])
 
 run_feedback_page = ->
   checkbox = $("#feedback_send_newsletter")
