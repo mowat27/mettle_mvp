@@ -7,19 +7,34 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-31946898-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
 </head>
 <body>
   <div id='header'>
     <div id='logo'>
-      <h1><%=link_to "Mettle - Big Data Testing", "/" %></h1>
+      <h1><%=link_to "Mettle - Big Data Testing", root_path %></h1>
     </div>
 
     <ul id="nav" class="linkbar">
-      <li> <%= link_to "Home", "/" %> </li>
-      <li> <%= link_to "Compare CSV Files", "/try" %> </li>
-      <li> <%= link_to "Give Feedback", "/feedbacks/new"%> </li>
-      <li> <%= link_to "Newsletter", "/customers/new" %> </li>
-      <li> <%= link_to "FAQ", "/about" %> </li>
+      <li> <%= link_to "Home", root_path %> </li>
+      <li> <%= link_to "Compare CSV Files", try_path %> </li>
+      <li> <%= link_to "Give Feedback", feedback_path %> </li>
+      <li> <%= link_to "Newsletter", newsletter_path %> </li>
+      <li> <%= link_to "FAQ", faq_path %> </li>
     </ul>
 
     <% if flash[:notice] %>
@@ -37,7 +52,7 @@
   <div id='wrap'>
     <div id='content'>
       <%= yield %>
-      <p class="ask-for-feedback">Could we improve anything about Mettle? Please <%= link_to "let us know", new_feedback_path %>.</p>
+      <p class="ask-for-feedback">Could we improve anything about Mettle? Please <%= link_to "let us know", feedback_path %>.</p>
     </div>
   </div>
 

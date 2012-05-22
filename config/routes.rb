@@ -61,6 +61,8 @@ MettleMvp::Application.routes.draw do
 
   match '/try' => 'try#index'
   match '/about' => 'about#new'
+  match '/feedback' => 'feedbacks#new'
+  match '/newsletter' => 'customers#new'
+  match '/faq' => 'about#new'
   match '/:id' => 'high_voltage/pages#show', :as => :static, :via => :get
-
 end
