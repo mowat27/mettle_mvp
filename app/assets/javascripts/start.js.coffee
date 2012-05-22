@@ -152,6 +152,6 @@ run_page = ->
   if window.location.pathname == "/try"
     run_csv_comparison_page()
 
-  if window.location.pathname == "/feedbacks/new"
+  if window.location.pathname == "/feedback"
     run_feedback_page()
 
