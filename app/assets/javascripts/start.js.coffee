@@ -100,45 +100,44 @@ run_csv_comparison_page = ->
   $("#examples").find("a").click (evt) ->
     _gaq.push(['_trackEvent', 'Download Examples', $(this).text(), 'file_downloaded'])
 
+  expected_results_callbacks =
+    on_start: ->
+      mark_step_in_progress load_expected_step
+      _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'started'])
+    on_success: ->
+      mark_step_completed load_expected_step
+      start_step load_actual_step
+      _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'succeeded'])
+    on_error: (error) ->
+      mark_step_failed load_expected_step, error
+      _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'failed'])
+
+
   load_expected_step().find("textarea").change (evt) ->
-    comparison.load_pasted_results "expected", $(this).val(),
-      on_start: ->
-        mark_step_in_progress load_expected_step
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'started'])
-      on_success: ->
-        mark_step_completed load_expected_step
-        start_step load_actual_step
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'succeeded'])
-      on_error: (error) ->
-        mark_step_failed load_expected_step, error
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'failed'])
+    comparison.load_pasted_results "expected", $(this).val(), expected_results_callbacks
 
   $("#expected_csv_input").change (evt) ->
-    comparison.load_results "expected", evt.target.files,
-      on_start: ->
-        mark_step_in_progress load_expected_step
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'started'])
-      on_success: ->
-        mark_step_completed load_expected_step
-        start_step load_actual_step
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'succeeded'])
-      on_error: (error) ->
-        mark_step_failed load_expected_step, error
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_expected', 'failed'])
+    comparison.load_results "expected", evt.target.files, expected_results_callbacks
+
+  actual_results_callbacks =
+   on_start: ->
+      mark_step_in_progress load_actual_step
+      _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'started'])
+    on_success: ->
+      mark_step_completed load_actual_step
+      create_primary_key_checkboxes comparison.column_names()
+      start_step choose_pk_step
+      _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'succeeded'])
+    on_error: (error) ->
+      mark_step_failed load_actual_step, error
+      _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'failed'])
+
+  load_actual_step().find("textarea").change (evt) ->
+    comparison.load_pasted_results "actual", $(this).val(), actual_results_callbacks
 
   $("#actual_csv_input").change (evt) ->
-    comparison.load_results "actual", evt.target.files,
-      on_start: ->
-        mark_step_in_progress load_actual_step
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'started'])
-      on_success: ->
-        mark_step_completed load_actual_step
-        create_primary_key_checkboxes comparison.column_names()
-        start_step choose_pk_step
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'succeeded'])
-      on_error: (error) ->
-        mark_step_failed load_actual_step, error
-        _gaq.push(['_trackEvent', 'Compare CSV Files', 'load_actual', 'failed'])
+    comparison.load_results "actual", evt.target.files, actual_results_callbacks
+
 
   $("#compare-button").click (evt) ->
     _gaq.push(['_trackEvent', 'Compare CSV Files', 'compare', 'started'])

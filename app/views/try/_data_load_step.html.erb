@@ -1,0 +1,8 @@
+<header>Step <%= number %>: Load <%= csv %> results</header>
+<input type="file" id="<%= csv %>_csv_input" name="<%= csv %>_csv_input" accept="text/csv"/>
+<textarea></textarea>
+<div class="progress" style='display: inline; padding: 2em;'>
+  <span class='loading-file' style='display: none'>Loading CSV File</span>
+  <span class='file-load-ok' style='display: none'>OK</span>
+  <span class='file-load-failed' style='display: none'>Error</span>
+</div>
