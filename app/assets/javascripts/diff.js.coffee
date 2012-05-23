@@ -49,18 +49,22 @@ class root.Diff.Comparison
   column_names: ->
     @array_intersection( @expected.column_names, @actual.column_names )
 
-  load_csv_file = (file_list, on_error, on_completion) ->
+  load_data = (data, callbacks) ->
+    try
+      csv_reader = new root.CsvReader(data)
+      json = "#{csv_reader.to_json()}\n"
+      callbacks.on_success.apply(self, [json])
+    catch e
+      callbacks.on_error(e)
+
+  load_csv_file = (file_list, callbacks) ->
     self = this
     for file in file_list
       reader = new FileReader
 
       reader.onloadend = (evt) ->
-        try
-          csv_reader = new root.CsvReader(evt.target.result)
-          json = "#{csv_reader.to_json()}\n"
-          on_completion.apply(self, [json])
-        catch e
-          on_error(e)
+        data = evt.target.result
+        load_data(data, callbacks)
 
       reader.readAsText(file)
 
@@ -73,11 +77,14 @@ class root.Diff.Comparison
 
     callbacks.on_start() if callbacks.on_start?
 
-    load_csv_file file_list, callbacks.on_error, (json) ->
-      src = JSON.parse(json)
-      target.column_names = src.column_names
-      target.data_set = root.Diff.DataSet.create_from_json(json)
-      callbacks.on_success() if callbacks.on_success?
+    load_csv_file file_list,
+      on_error:
+        callbacks.on_error
+      on_success: (json) ->
+        src = JSON.parse(json)
+        target.column_names = src.column_names
+        target.data_set = root.Diff.DataSet.create_from_json(json)
+        callbacks.on_success() if callbacks.on_success?
 
   zip = (lhs, rhs, func) ->
     for i, lhs_item of lhs
