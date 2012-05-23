@@ -1,17 +1,18 @@
 $step_bg : #F5F5F5;
+$step_height : 80px;
 
 .step {
   margin              : 0.5em 0em;
   position            : relative;
   padding             : 0.5em;
-  height              : 80px;
+  height              : $step_height;
   border              : 5px solid darken($step_bg, 8);
   padding-left        : 100px;
   background-color    : $step_bg;
   background-repeat   : no-repeat;
   background-position : left center;
 
-  input{
+  input {
     padding   : 0.2em;
     font-size : 1em;
   }

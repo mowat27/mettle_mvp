@@ -57,7 +57,7 @@ class root.Diff.Comparison
     catch e
       callbacks.on_error(e)
 
-  load_csv_file = (file_list, callbacks) ->
+  read_csv_files = (file_list, callbacks) ->
     self = this
     for file in file_list
       reader = new FileReader
@@ -77,7 +77,24 @@ class root.Diff.Comparison
 
     callbacks.on_start() if callbacks.on_start?
 
-    load_csv_file file_list,
+    read_csv_files file_list,
+      on_error:
+        callbacks.on_error
+      on_success: (json) ->
+        src = JSON.parse(json)
+        target.column_names = src.column_names
+        target.data_set = root.Diff.DataSet.create_from_json(json)
+        callbacks.on_success() if callbacks.on_success?
+
+  load_pasted_results: (type, data, callbacks) ->
+    target = @expected if type == "expected"
+    target = @actual if type == "actual"
+
+    callbacks = callbacks ? {on_error: -> null}
+
+    callbacks.on_start() if callbacks.on_start?
+
+    load_data data,
       on_error:
         callbacks.on_error
       on_success: (json) ->
