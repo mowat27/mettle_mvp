@@ -1,6 +1,20 @@
 <header>Step <%= number %>: Load <%= csv %> results</header>
-<input type="file" id="<%= csv %>_csv_input" name="<%= csv %>_csv_input" accept="text/csv"/>
-<textarea></textarea>
+
+<div style="display : block">
+  Data Source:
+  <input type="radio" name="<%= csv %>_data-source" value="file" /> File
+  <input type="radio" name="<%= csv %>_data-source" value="manual" /> Text
+</div>
+
+<span class='data-source file'>
+  <input type="file" class="csv_input" id="<%= csv %>_csv_input" name="<%= csv %>_csv_input" accept="text/csv"/>
+</span>
+
+<span class='data-source manual'>
+  <textarea></textarea>
+  <input type='submit' value='Load'/>
+<span>
+
 <div class="progress" style='display: inline; padding: 2em;'>
   <span class='loading-file' style='display: none'>Loading CSV File</span>
   <span class='file-load-ok' style='display: none'>OK</span>

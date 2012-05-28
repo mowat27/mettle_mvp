@@ -61,9 +61,12 @@ run_csv_comparison_page = ->
   start_step = (step) ->
     step().addClass("current")
     step().find("input").attr("disabled", false)
+    step().find("textarea").removeAttr("readonly")
 
   disable_step = (step) ->
-    step().addClass("disabled").find("input").attr("disabled", true)
+    step().addClass("disabled")
+    step().find("input").attr("disabled", true)
+    step().find("textarea").attr("readonly", "readonly")
 
 
   mark_step_in_progress = (step) ->
@@ -74,6 +77,7 @@ run_csv_comparison_page = ->
     step().find(".loading-file").hide()
     step().find(".file-load-ok").show()
     step().find("input").attr("disabled", true)
+    step().find("textarea").attr("readonly", "readonly")
 
   mark_step_failed = (step, error) ->
     error_html = """
@@ -96,6 +100,26 @@ run_csv_comparison_page = ->
   disable_step compare_files_step
   disable_step load_actual_step
   start_step load_expected_step
+
+
+  enable_data_source = (step, name) ->
+    data_source_radios = (value) ->
+      step.find("input:radio").filter ->
+        $(this).val() == value
+
+    step.find(".data-source").hide()
+    data_source_radios(name).attr("checked", true)
+    step.find(".data-source").filter(".#{name}").show()
+
+
+  $(".step").each (i, step) ->
+    step = $(step)
+    step.find("input:radio").click ->
+      enable_data_source(step, $(this).val())
+
+
+  enable_data_source(load_expected_step(), "file")
+  enable_data_source(load_actual_step(), "file")
 
   $("#examples").find("a").click (evt) ->
     _gaq.push(['_trackEvent', 'Download Examples', $(this).text(), 'file_downloaded'])
@@ -121,19 +145,27 @@ run_csv_comparison_page = ->
     on_success: ->
       create_primary_key_checkboxes comparison.column_names()
 
+  data_load_steps = [
+      {
+        container: load_expected_step()
+        name: "expected"
+        callbacks: expected_results_callbacks
+      },{
+        container: load_actual_step()
+        name: "actual"
+        callbacks: actual_results_callbacks
+      }
+    ]
 
-  load_expected_step().find("textarea").change (evt) ->
-    comparison.load_pasted_results "expected", $(this).val(), expected_results_callbacks
+  $(data_load_steps).each (i, step) ->
+    container = step.container
 
-  $("#expected_csv_input").change (evt) ->
-    comparison.load_results "expected", evt.target.files, expected_results_callbacks
+    container.find("input:submit").click (evt) ->
+      text = container.find("textarea").val()
+      comparison.load_pasted_results step.name, text, step.callbacks
 
-  load_actual_step().find("textarea").change (evt) ->
-    comparison.load_pasted_results "actual", $(this).val(), actual_results_callbacks
-
-  $("#actual_csv_input").change (evt) ->
-    comparison.load_results "actual", evt.target.files, actual_results_callbacks
-
+    container.find(".csv_input").change (evt) ->
+      comparison.load_results step.name, evt.target.files, step.callbacks
 
   $("#compare-button").click (evt) ->
     _gaq.push(['_trackEvent', 'Compare CSV Files', 'compare', 'started'])
@@ -162,8 +194,6 @@ run_feedback_page = ->
       checkbox.attr("disabled", false)
       label.removeClass("disabled")
     true
-
-
 
 run_page = ->
   $("#nav").find("a").each ->
