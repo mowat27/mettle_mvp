@@ -109,6 +109,7 @@ run_csv_comparison_page = ->
     step.find("input:radio").click ->
       enable_data_source(step, $(this).val())
 
+
   if !file_api_supported()
     $("#header").append("<div id='errors'>Some features are disabled because <a href=/browser>your browser does not support them</a>.</div>")
     # $("#upload_files").find("input").attr("disabled", true)
