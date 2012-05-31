@@ -110,7 +110,7 @@ run_csv_comparison_page = ->
       enable_data_source(step, $(this).val())
 
   if !file_api_supported()
-    $("#header").append("<div id='errors'>Your browser does not support some features. <a href=/browser>Find out more here<a>.</div>")
+    $("#header").append("<div id='errors'>Some features are disabled because <a href=/browser>your browser does not support them</a>.</div>")
     # $("#upload_files").find("input").attr("disabled", true)
     $([load_expected_step(),load_actual_step()]).each (i, step) ->
       enable_data_source(step, "manual")
