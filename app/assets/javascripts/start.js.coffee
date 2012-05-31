@@ -3,19 +3,11 @@ root = global ? window
 on_try_it_page = ->
   $("#upload_files").length != 0
 
-browser_not_supported = ->
-  browser = BrowserDetect.browser
-  false
-
-$ ->
-  if on_try_it_page() && (browser_not_supported() || !file_api_supported())
-    $("#header").append("<div id='errors'>Sorry, your browser is not supported. <a href=/browser>Find out more here<a>.</div>")
-    $("#upload_files").find("input").attr("disabled", true)
-  else
-    run_page()
-
 file_api_supported = ->
   window.File && window.FileReader && window.FileList && window.Blob
+
+$ ->
+  run_page()
 
 comparison = new root.Diff.Comparison(["banana"])
 
@@ -117,9 +109,16 @@ run_csv_comparison_page = ->
     step.find("input:radio").click ->
       enable_data_source(step, $(this).val())
 
-
-  enable_data_source(load_expected_step(), "file")
-  enable_data_source(load_actual_step(), "file")
+  if !file_api_supported()
+    $("#header").append("<div id='errors'>Your browser does not support some features. <a href=/browser>Find out more here<a>.</div>")
+    # $("#upload_files").find("input").attr("disabled", true)
+    $([load_expected_step(),load_actual_step()]).each (i, step) ->
+      enable_data_source(step, "manual")
+      step.find("input:radio").attr("disabled", true)
+      # enable_data_source(load_actual_step(), "manual")
+  else
+    enable_data_source(load_expected_step(), "file")
+    enable_data_source(load_actual_step(), "file")
 
   $("#examples").find("a").click (evt) ->
     _gaq.push(['_trackEvent', 'Download Examples', $(this).text(), 'file_downloaded'])
@@ -177,6 +176,7 @@ run_csv_comparison_page = ->
     $("#results_table_test").empty().append(test_table.to_jquery())
     compare_files_step().removeClass("current").addClass("complete")
     switch_to_results()
+    $("#errors").hide()
     _gaq.push(['_trackEvent', 'Compare CSV Files', 'compare', 'results_shown'])
 
 run_feedback_page = ->
@@ -204,4 +204,5 @@ run_page = ->
 
   if window.location.pathname == "/feedback"
     run_feedback_page()
+
 

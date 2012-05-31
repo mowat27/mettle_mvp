@@ -1,35 +1,35 @@
-<h2>Supported Browers</h2>
+<h2>Brower Support</h2>
 
 <p>Mettle allows you to <a href='/try'>compare 2 CSV files</a> using only your browser so you can work with confidential data you cannot send outside your company.  We think this is a good thing because it helps you do your job better without needing to worry about sending data over the internet or dealing with any paperwork.</p>
 
-<p>Unfortunately, there is a downside that we had to use evolving technologies that only work in some browsers.  Hopefully, this does not cause you too much of a problem but we thought it would be helpful to let you know which browers <i>do</i> work.</p>
+<p>Unfortunately, there is a downside that we had to use evolving technologies that only work in some browsers so there are some features that may not work.  Hopefully, this does not cause you too much of a problem but we thought it would be helpful to let you know what each brower allows you to do.</p>
 
 <p>
   <table id="browser-support-table">
     <tr>
       <th>Browser</th>
       <th>Tested Version</th>
-      <th>Supported</th>
+      <th>Support</th>
     </tr>
     <tr>
       <td>Google Chrome</td>
       <td>19.0</td>
-      <td>Yes</td>
+      <td>Full</td>
     </tr>
     <tr>
       <td>Firefox</td>
       <td>12</td>
-      <td>Yes</td>
+      <td>Full</td>
     </tr>
     <tr>
       <td>Internet Explorer</td>
       <td>9</td>
-      <td>No</td>
+      <td>CSV file uploads not supported, but you can still paste in CSV data</td>
     </tr>
     <tr>
       <td>Safari</td>
       <td>5.1</td>
-      <td>No</td>
+      <td>CSV file uploads not supported, but you can still paste in CSV data</td>
     </tr>
     <tr>
       <td>Opera</td>
@@ -39,10 +39,11 @@
   </table>
 </p>
 
-<p>Notably, Internet Explorer and Safari are not supported yet, but we are working on a solution.  Please <%= link_to "let us know", feedback_path %> if this is important to you so we can push it up our priority list.</p>
+<p>Notably, Internet Explorer and Safari are not fully supported yet.  Please <%= link_to "let us know", feedback_path %> if this is causing you a problem.  We would love to help you find a solution.</p>
 
 <h3>Technical Details</h3>
-<p>We do not support Safari and IE because they have not implemented the HTML5 FileReader API yet.  You can find out more information on browser support for the FileReader API at <a href="http://caniuse.com/filereader">caniuse.com</a>.</p>
+
+<p>We do not fully support Safari and IE because they have not implemented the HTML5 FileReader API yet.  You can find out more information on browser support for the FileReader API at <a href="http://caniuse.com/filereader">caniuse.com</a>.</p>
 
 
 
